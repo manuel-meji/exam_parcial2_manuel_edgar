@@ -13,12 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet ("/capturarDatos")
 public class capturarDatos extends HttpServlet {
-
+	
 	private static final long serialVersionUID = 1L;
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 	    
-       
+       System.out.println("hcjhdc");
         String usuario;
         String clave;
         String query="";
@@ -47,6 +47,8 @@ public class capturarDatos extends HttpServlet {
         	
         	if (!usuario.equals(""))
         		query = "select * from usuarios where nombreUsuario='"+usuario+"' and contraseña='"+clave+"'";
+				loginAdmin(usuario, clave);
+
         	else
         		query = "select * from Usuarios";
 
@@ -72,5 +74,34 @@ public class capturarDatos extends HttpServlet {
 	             e.printStackTrace();
 	             System.out.println("Error de seguimiento en getConnection() : " + e.getMessage());
 	         }
-	} 
+	}
+	
+	public void loginAdmin(String nombreUsuario, String contrasena) {
+        try {
+            String sql = "SELECT * FROM usuarios WHERE nombreUsuario = '" + nombreUsuario + "'"
+                    + " AND tipoUsuario = 'Administrador'";
+            ResultSet rs = statement.executeQuery(sql);
+            if (rs.next()) {
+                String contrasenaDB = rs.getString("contraseña");
+                String nombreUsuarioBD = rs.getString("nombreUsuario");
+                if (contrasenaDB != null && contrasenaDB.equals(contrasena) && nombreUsuarioBD.equals(nombreUsuario)) {
+                    String nombre1 = rs.getString("nombre1");
+                    String nombre2 = rs.getString("nombre2");
+                    String apellido1 = rs.getString("apellido1");
+                    String apellido2 = rs.getString("apellido2");
+                    sesionIniciadaAdmin = true;
+                    JOptionPane.showMessageDialog(null,
+                            "Bienvenido " + nombre1 + " " + nombre2 + " " + apellido1 + " " + apellido2);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectas");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Usuario no encontrado");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al intentar iniciar sesión: " + e.getMessage());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error inesperado: " + e.getMessage());
+        }
+    }
 }	
