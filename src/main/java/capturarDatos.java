@@ -37,7 +37,8 @@ public class capturarDatos extends HttpServlet {
 
         try{         		
         	usuario = req.getParameter("nombre"); //recibe el usuario de la p�gina index.html.
-        	clave = req.getParameter("contraseña"); // recibe la clave de la p�gina index.html.
+        	clave = req.getParameter("contraseña");
+             // recibe la clave de la p�gina index.html.
         	           
         	Class.forName("com.mysql.jdbc.Driver"); 
         	        	        	  
@@ -83,6 +84,9 @@ public class capturarDatos extends HttpServlet {
 	}
 	
 	public void loginAdmin(String nombreUsuario, String contrasena) {
+
+        System.out.println(nombreUsuario);
+        System.out.println(contrasena);
         System.out.println("Holaaaaaaa");
         try {
             String sql = "SELECT * FROM usuarios WHERE nombreUsuario = '" + nombreUsuario + "'"
