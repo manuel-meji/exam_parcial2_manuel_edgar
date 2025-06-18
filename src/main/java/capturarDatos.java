@@ -38,7 +38,7 @@ public class capturarDatos extends HttpServlet {
         	           
         	Class.forName("com.mysql.jdbc.Driver"); 
         	        	        	  
-      	    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyecto1?verifyServerCertificate=false&useSSL=true", "root", "messi.34.ed*");
+      	    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyecto1?verifyServerCertificate=false&useSSL=true", "root", "Manuel2004");
         	con.setAutoCommit(true);
         	   
         	System.out.println("Conexi�n exitosa...");
