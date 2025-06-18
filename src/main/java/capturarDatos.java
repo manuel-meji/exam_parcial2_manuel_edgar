@@ -41,21 +41,24 @@ public class capturarDatos extends HttpServlet {
         	           
         	Class.forName("com.mysql.jdbc.Driver"); 
         	        	        	  
-      	    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyecto1?verifyServerCertificate=false&useSSL=true", "root", "Manuel2004");
+      	    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyecto1?verifyServerCertificate=false&useSSL=true", "root", "messi.34.ed*");
         	con.setAutoCommit(true);
         	   
         	System.out.println("Conexi�n exitosa...");
- 
+            System.out.println("TAAAAAAAAAAAAAAAAAAAAAAA");
         	stmt = con.createStatement();
         	
-        	if (!usuario.equals(""))
+            System.out.println("TAAAAAAAAAAAAAAAAAAAAAAA");
+
+        	if (!usuario.equals("")){
         		query = "select * from usuarios where nombreUsuario='"+usuario+"' and contraseña='"+clave+"'";
 				loginAdmin(usuario, clave);
-
-        	else
+                
+            }
+        	else{
         		query = "select * from Usuarios";
 
-        	System.err.println(query);
+        	System.err.println(query);}
         	
 	        rs = stmt.executeQuery(query);
         	
@@ -80,6 +83,7 @@ public class capturarDatos extends HttpServlet {
 	}
 	
 	public void loginAdmin(String nombreUsuario, String contrasena) {
+        System.out.println("Holaaaaaaa");
         try {
             String sql = "SELECT * FROM usuarios WHERE nombreUsuario = '" + nombreUsuario + "'"
                     + " AND tipoUsuario = 'Administrador'";
