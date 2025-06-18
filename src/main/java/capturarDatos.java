@@ -3,6 +3,7 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.servlet.ServletException;
@@ -10,9 +11,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 
 @WebServlet ("/capturarDatos")
 public class capturarDatos extends HttpServlet {
+            Connection con = null;
+        Statement stmt = null;
+        ResultSet rs = null;
 	
 	private static final long serialVersionUID = 1L;
 
@@ -24,9 +29,7 @@ public class capturarDatos extends HttpServlet {
         String query="";
         PrintWriter pw; //objeto que se utiliza para enviarle la respuesta al usuario.
         
-        Connection con = null;
-        Statement stmt = null;
-        ResultSet rs = null;
+
 
         res.setContentType( "text/html" );  // se le indica al navegador el tipo de contenido que tendr� la respuesta que 
         									//se enviar� al cliente.
@@ -80,7 +83,11 @@ public class capturarDatos extends HttpServlet {
         try {
             String sql = "SELECT * FROM usuarios WHERE nombreUsuario = '" + nombreUsuario + "'"
                     + " AND tipoUsuario = 'Administrador'";
-            ResultSet rs = statement.executeQuery(sql);
+
+                    
+
+                
+            ResultSet rs = stmt.executeQuery(sql);
             if (rs.next()) {
                 String contrasenaDB = rs.getString("contraseña");
                 String nombreUsuarioBD = rs.getString("nombreUsuario");
@@ -89,7 +96,7 @@ public class capturarDatos extends HttpServlet {
                     String nombre2 = rs.getString("nombre2");
                     String apellido1 = rs.getString("apellido1");
                     String apellido2 = rs.getString("apellido2");
-                    sesionIniciadaAdmin = true;
+                    //sesionIniciadaAdmin = true;
                     JOptionPane.showMessageDialog(null,
                             "Bienvenido " + nombre1 + " " + nombre2 + " " + apellido1 + " " + apellido2);
                 } else {
