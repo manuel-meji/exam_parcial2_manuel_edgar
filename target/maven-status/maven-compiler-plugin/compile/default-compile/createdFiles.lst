@@ -1,6 +1,7 @@
+EliminarOficialServlet.class
+OficialDAO.class
 PanelEstudiantesServlet.class
 capturarDatos.class
 GestionOficialesServlet.class
 AgregarOficialServlet.class
 GuardarEstudianteServlet.class
-OficialDAO.class
