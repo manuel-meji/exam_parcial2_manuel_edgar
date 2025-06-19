@@ -42,10 +42,10 @@ public class capturarDatos extends HttpServlet {
             con.setAutoCommit(true);
 
             System.out.println("Conexi�n exitosa...");
-            System.out.println("TAAAAAAAAAAAAAAAAAAAAAAA");
+            
             stmt = con.createStatement();
 
-            System.out.println("TAAAAAAAAAAAAAAAAAAAAAAA");
+           
 
             if (!usuario.equals("")) {
                 query = "select * from usuarios where nombreUsuario='" + usuario + "' and contraseña='" + clave + "'";
