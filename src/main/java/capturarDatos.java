@@ -27,11 +27,7 @@ public class capturarDatos extends HttpServlet {
         String usuario;
         String clave;
         String query = "";
-        PrintWriter pw; // objeto que se utiliza para enviarle la respuesta al usuario.
-
-        res.setContentType("text/html"); // se le indica al navegador el tipo de contenido que tendr� la respuesta que
-                                         // se enviar� al cliente.
-        pw = res.getWriter(); // se crear el objeto para la enviar la respuesta.
+        PrintWriter pw; 
 
         try {
             usuario = req.getParameter("nombre"); // recibe el usuario de la p�gina index.html.
@@ -42,7 +38,7 @@ public class capturarDatos extends HttpServlet {
             Class.forName("com.mysql.jdbc.Driver");
 
             con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/proyecto1?verifyServerCertificate=false&useSSL=true", "root", "1234");
+                    "jdbc:mysql://localhost:3306/proyecto1?verifyServerCertificate=false&useSSL=true", "root", "messi.34.ed*");
             con.setAutoCommit(true);
 
             System.out.println("Conexi�n exitosa...");
@@ -54,6 +50,7 @@ public class capturarDatos extends HttpServlet {
             if (!usuario.equals("")) {
                 query = "select * from usuarios where nombreUsuario='" + usuario + "' and contraseña='" + clave + "'";
                 if(loginAdmin(usuario, clave)){
+
                     res.sendRedirect("menu.html");
                 }
 
@@ -65,21 +62,7 @@ public class capturarDatos extends HttpServlet {
 
             rs = stmt.executeQuery(query);
 
-            // el siguiente c�digo edita una p�gina html, para enviar a desplegar al usuario
-            // el resultado.
-            pw.println("<HTML><HEAD><TITLE>Leyendo par�metros</TITLE></HEAD>");
-            pw.println("<BODY BGCOLOR=\"#CCBBAA\">");
-            pw.println("<H2>Leyendo los datos de la tabla USUARIOS<H2><P>");
-            pw.println("<UL>\n");
-            pw.println("Usuario		Clave<br><br>");
-            while (rs.next()) // recorre la tabla y env�a el resultado del contenido de la misma.
-            {
-                pw.println(rs.getString("Usuario") + "  &nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp "
-                        + rs.getString("Clave"));
-                pw.println("<br><br>");
-            }
-            pw.println("</BODY></HTML>");
-            pw.close();
+
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error de seguimiento en getConnection() : " + e.getMessage());
