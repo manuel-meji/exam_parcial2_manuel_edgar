@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 
 @WebServlet("/capturarDatos")
 public class capturarDatos extends HttpServlet {
@@ -19,12 +20,13 @@ public class capturarDatos extends HttpServlet {
     Connection con = null;
     Statement stmt = null;
     ResultSet rs = null;
+    String idOficialActual;
 
     private static final long serialVersionUID = 1L;
 
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String usuario = req.getParameter("nombre"); // Get username from index.html
-        String clave = req.getParameter("clave");   // Get password from index.html
+        String clave = req.getParameter("clave"); // Get password from index.html
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -52,7 +54,8 @@ public class capturarDatos extends HttpServlet {
                 out.println("            display: flex;");
                 out.println("            justify-content: center;");
                 out.println("            align-items: center;");
-                out.println("            background: url('jack-b-8Wqm1W59Baw-unsplash.jpg') no-repeat center center/cover;");
+                out.println(
+                        "            background: url('jack-b-8Wqm1W59Baw-unsplash.jpg') no-repeat center center/cover;");
                 out.println("            position: relative;");
                 out.println("        }");
                 out.println("        body::before {");
@@ -113,14 +116,17 @@ public class capturarDatos extends HttpServlet {
                 out.println("        <button type=\"button\" onclick=\"window.location.href = 'gestionOficiales'\">");
                 out.println("            Mantenimiento de Oficiales");
                 out.println("        </button>");
-                out.println("        <button type=\"button\" onclick=\"window.location.href='http://localhost:8080/exam_parcial2_manuel_edgar/panelEstudiantes'\">");
+                out.println(
+                        "        <button type=\"button\" onclick=\"window.location.href='http://localhost:8080/exam_parcial2_manuel_edgar/panelEstudiantes'\">");
                 out.println("            Mantenimiento de Estudiantes");
                 out.println("        </button>");
                 out.println("    </div>");
                 out.println("</body>");
                 out.println("</html>");
-            } else {
-                res.sendRedirect("index.html");
+            } else if(loginOficial(usuario, clave) != null) {
+                res.sendRedirect("panelFuncionariosOficiales.html");               
+            } else{
+                 res.sendRedirect("index.html");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -140,6 +146,38 @@ public class capturarDatos extends HttpServlet {
                 e.printStackTrace();
             }
         }
+    }
+
+    public String loginOficial(String idAcceso, String contrasena) {
+        try {
+            String sql = "SELECT * FROM usuarios WHERE nombreUsuario = '" + idAcceso + "' AND tipoUsuario = 'Guarda'";
+
+            ResultSet rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+
+                String contrasenaDB = rs.getString("contraseña");
+                String nombreUsuarioBD = rs.getString("nombreUsuario");
+
+                if (contrasenaDB != null && contrasenaDB.equals(contrasena) && nombreUsuarioBD.equals(idAcceso)) {
+                    String nombre1 = rs.getString("nombre1");
+                    String nombre2 = rs.getString("nombre2");
+                    String apellido1 = rs.getString("apellido1");
+                    String apellido2 = rs.getString("apellido2");
+                    // sesionInciadaOficial = true;
+                    idOficialActual = idAcceso;
+                    return nombre1 + apellido1;
+                } else {
+                    System.out.println("Usuario o contraseña incorrectos.");
+                }
+            } else {
+                System.out.println("Usuario o contraseña incorrectos.");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al intentar iniciar sesión: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error inesperado al iniciar sesión: " + e.getMessage());
+        }
+        return null;
     }
 
     public String loginAdmin(String nombreUsuario, String contrasena) {
