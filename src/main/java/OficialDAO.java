@@ -115,7 +115,7 @@ public class OficialDAO {
                 fila.put("cedula", rs.getString("cedula"));
                 fila.put("numeroTelefono", rs.getString("numeroTelefono"));
                 fila.put("nombreUsuario", rs.getString("nombreUsuario"));
-                // ¡No pasamos la contraseña por seguridad!
+                fila.put("contraseña", rs.getString("contraseña"));
                 
                 listaOficiales.add(fila);
             }
@@ -127,5 +127,39 @@ public class OficialDAO {
         }
         
         return listaOficiales;
+    }
+     public void eliminarOficial(String nombreUsuario) throws SQLException, ClassNotFoundException {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        
+        // La consulta SQL usa '?' para la seguridad
+        String sql = "DELETE FROM usuarios WHERE nombreUsuario = ? AND tipoUsuario = 'Guarda'";
+
+        try {
+            // Usamos tu método de conexión
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/proyecto1?verifyServerCertificate=false&useSSL=true", 
+                    "root", 
+                    "1234"); // ¡TU CONTRASEÑA!
+
+            pstmt = con.prepareStatement(sql);
+            // Asignamos el nombre de usuario de forma segura al placeholder
+            pstmt.setString(1, nombreUsuario); 
+            
+            // executeUpdate() devuelve el número de filas afectadas.
+            // Podemos usarlo para saber si realmente se borró algo.
+            int filasAfectadas = pstmt.executeUpdate();
+            
+            if (filasAfectadas > 0) {
+                System.out.println("Oficial con usuario '" + nombreUsuario + "' eliminado correctamente.");
+            } else {
+                System.out.println("No se encontró ningún oficial con el usuario '" + nombreUsuario + "' para eliminar.");
+            }
+
+        } finally {
+            if (pstmt != null) pstmt.close();
+            if (con != null) con.close();
+        }
     }
 }
