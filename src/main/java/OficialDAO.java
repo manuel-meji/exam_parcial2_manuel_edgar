@@ -31,7 +31,7 @@ public class OficialDAO {
             con = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/proyecto1?verifyServerCertificate=false&useSSL=true",
                     "root",
-                    "messi.34.ed*");
+                    "1234");
 
             // Esta línea no es estrictamente necesaria, ya que true es el valor por defecto, pero la mantenemos.
             con.setAutoCommit(true);
