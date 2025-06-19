@@ -100,7 +100,7 @@ public class OficialDAO {
             con = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/proyecto1?verifyServerCertificate=false&useSSL=true", 
                     "root", 
-                    "messi.34.ed*"); // ¡RECUERDA USAR TU CONTRASEÑA!
+                    "1234"); // ¡RECUERDA USAR TU CONTRASEÑA!
             
             stmt = con.createStatement();
             rs = stmt.executeQuery(sql);

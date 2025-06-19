@@ -1,9 +1,6 @@
 PanelEstudiantesServlet.class
 capturarDatos.class
-<<<<<<< HEAD
-=======
 GestionOficialesServlet.class
->>>>>>> d44556ac7330815349469c70595850eed77520c0
 AgregarOficialServlet.class
 GuardarEstudianteServlet.class
 OficialDAO.class

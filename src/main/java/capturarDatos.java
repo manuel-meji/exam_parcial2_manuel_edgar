@@ -29,7 +29,7 @@ public class capturarDatos extends HttpServlet {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/proyecto1?verifyServerCertificate=false&useSSL=true", "root", "messi.34.ed*");
+                    "jdbc:mysql://localhost:3306/proyecto1?verifyServerCertificate=false&useSSL=true", "root", "1234");
             stmt = con.createStatement();
 
             String nombreCompleto = loginAdmin(usuario, clave);

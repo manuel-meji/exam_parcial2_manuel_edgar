@@ -28,7 +28,7 @@ public class PanelEstudiantesServlet extends HttpServlet {
         out.println("    <h1 class=\"logo\">Administración</h1>");
         out.println("    <nav>");
         out.println("      <ul>");
-        out.println("        <li><a href=\"panelOficialesAdmin.html\">Oficiales</a></li>");
+        out.println("        <li><a href=\"gestionOficiales\">Oficiales</a></li>");
         out.println("        <li class=\"active\"><a href=\"#\">Estudiantes</a></li>");
         out.println("      </ul>");
         out.println("    </nav>");
