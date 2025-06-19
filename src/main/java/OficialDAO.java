@@ -86,22 +86,23 @@ public class OficialDAO {
             }
         }
     }
-     public List<Map<String, Object>> obtenerTodosLosOficiales() throws SQLException, ClassNotFoundException {
+
+    public List<Map<String, Object>> obtenerTodosLosOficiales() throws SQLException, ClassNotFoundException {
         List<Map<String, Object>> listaOficiales = new ArrayList<>();
         Connection con = null;
         Statement stmt = null;
         ResultSet rs = null;
-        
+
         String sql = "SELECT * FROM usuarios WHERE tipoUsuario='Guarda'";
 
         try {
             // Usamos tu método de conexión
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/proyecto1?verifyServerCertificate=false&useSSL=true", 
-                    "root", 
+                    "jdbc:mysql://localhost:3306/proyecto1?verifyServerCertificate=false&useSSL=true",
+                    "root",
                     "1234"); // ¡RECUERDA USAR TU CONTRASEÑA!
-            
+
             stmt = con.createStatement();
             rs = stmt.executeQuery(sql);
 
@@ -116,22 +117,29 @@ public class OficialDAO {
                 fila.put("numeroTelefono", rs.getString("numeroTelefono"));
                 fila.put("nombreUsuario", rs.getString("nombreUsuario"));
                 fila.put("contraseña", rs.getString("contraseña"));
-                
+
                 listaOficiales.add(fila);
             }
         } finally {
             // Cerramos todos los recursos
-            if (rs != null) rs.close();
-            if (stmt != null) stmt.close();
-            if (con != null) con.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (stmt != null) {
+                stmt.close();
+            }
+            if (con != null) {
+                con.close();
+            }
         }
-        
+
         return listaOficiales;
     }
-     public void eliminarOficial(String nombreUsuario) throws SQLException, ClassNotFoundException {
+
+    public void eliminarOficial(String nombreUsuario) throws SQLException, ClassNotFoundException {
         Connection con = null;
         PreparedStatement pstmt = null;
-        
+
         // La consulta SQL usa '?' para la seguridad
         String sql = "DELETE FROM usuarios WHERE nombreUsuario = ? AND tipoUsuario = 'Guarda'";
 
@@ -139,18 +147,18 @@ public class OficialDAO {
             // Usamos tu método de conexión
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/proyecto1?verifyServerCertificate=false&useSSL=true", 
-                    "root", 
+                    "jdbc:mysql://localhost:3306/proyecto1?verifyServerCertificate=false&useSSL=true",
+                    "root",
                     "1234"); // ¡TU CONTRASEÑA!
 
             pstmt = con.prepareStatement(sql);
             // Asignamos el nombre de usuario de forma segura al placeholder
-            pstmt.setString(1, nombreUsuario); 
-            
+            pstmt.setString(1, nombreUsuario);
+
             // executeUpdate() devuelve el número de filas afectadas.
             // Podemos usarlo para saber si realmente se borró algo.
             int filasAfectadas = pstmt.executeUpdate();
-            
+
             if (filasAfectadas > 0) {
                 System.out.println("Oficial con usuario '" + nombreUsuario + "' eliminado correctamente.");
             } else {
@@ -158,8 +166,60 @@ public class OficialDAO {
             }
 
         } finally {
-            if (pstmt != null) pstmt.close();
-            if (con != null) con.close();
+            if (pstmt != null) {
+                pstmt.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+    }
+
+    public void editarOficial(String nombre1, String nombre2, String apellido1, String apellido2, String telefono, String nombreUsuarioNuevo, String contrasena, String id, String nombreUsuarioOriginal) throws SQLException, ClassNotFoundException {
+
+        Connection con = null;
+        PreparedStatement pstmt = null;
+
+        // La consulta UPDATE con '?' para máxima seguridad
+        String sql = "UPDATE usuarios SET cedula = ?, nombre1 = ?, nombre2 = ?, "
+                + "apellido1 = ?, apellido2 = ?, numeroTelefono = ?, "
+                + "nombreUsuario = ?, contraseña = ? "
+                + "WHERE nombreUsuario = ?";
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/proyecto1?verifyServerCertificate=false&useSSL=true",
+                    "root",
+                    "1234"); // ¡TU CONTRASEÑA!
+
+            pstmt = con.prepareStatement(sql);
+
+            // Asignamos todos los parámetros a los placeholders
+            pstmt.setString(1, id);
+            pstmt.setString(2, nombre1);
+            pstmt.setString(3, nombre2);
+            pstmt.setString(4, apellido1);
+            pstmt.setString(5, apellido2);
+            pstmt.setString(6, telefono);
+            pstmt.setString(7, nombreUsuarioNuevo);
+            pstmt.setString(8, contrasena);
+            pstmt.setString(9, nombreUsuarioOriginal); // El WHERE clause
+
+            int filasAfectadas = pstmt.executeUpdate();
+            if (filasAfectadas > 0) {
+                System.out.println("Oficial '" + nombreUsuarioOriginal + "' editado correctamente.");
+            } else {
+                System.out.println("No se encontró al oficial '" + nombreUsuarioOriginal + "' para editar.");
+            }
+
+        } finally {
+            if (pstmt != null) {
+                pstmt.close();
+            }
+            if (con != null) {
+                con.close();
+            }
         }
     }
 }
