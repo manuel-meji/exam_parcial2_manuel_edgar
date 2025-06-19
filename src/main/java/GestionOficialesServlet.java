@@ -70,7 +70,7 @@ public class GestionOficialesServlet extends HttpServlet {
         out.println("                <div class=\"form-group\"><label for=\"userName\">Nombre de usuario</label><input type=\"text\" id=\"userName\" name=\"nombreUsuario\" required></div>");
         out.println("                <div class=\"form-group\"><label for=\"contrasena\">Contraseña</label><input type=\"password\" id=\"contrasena\" name=\"contrasena\" required></div>");
         out.println("                <div class=\"footer-buttons\"><button type=\"button\" class=\"clear-button\" onclick=\"limpiarCampos()\">Limpiar</button><button type=\"submit\" class=\"add-button\">Agregar</button></div>");
-        out.println("                <div class=\"footer-buttons\"><button type=\"button\" class=\"edit-button\">Editar</button><button type=\"button\" class=\"delete-button\">Eliminar</button></div>");
+        out.println("                <div class=\"footer-buttons\"><button type=\"button\" class=\"edit-button\">Editar</button></div>");
         out.println("            </form>");
 
         // --- Sección de la Tabla ---
