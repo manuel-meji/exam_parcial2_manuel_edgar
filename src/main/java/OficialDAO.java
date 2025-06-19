@@ -2,7 +2,13 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class OficialDAO {
 
@@ -79,5 +85,47 @@ public class OficialDAO {
                 }
             }
         }
+    }
+     public List<Map<String, Object>> obtenerTodosLosOficiales() throws SQLException, ClassNotFoundException {
+        List<Map<String, Object>> listaOficiales = new ArrayList<>();
+        Connection con = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        
+        String sql = "SELECT * FROM usuarios WHERE tipoUsuario='Guarda'";
+
+        try {
+            // Usamos tu método de conexión
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/proyecto1?verifyServerCertificate=false&useSSL=true", 
+                    "root", 
+                    "messi.34.ed*"); // ¡RECUERDA USAR TU CONTRASEÑA!
+            
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(sql);
+
+            // Recorremos los resultados y los guardamos en la lista
+            while (rs.next()) {
+                Map<String, Object> fila = new HashMap<>();
+                fila.put("nombre1", rs.getString("nombre1"));
+                fila.put("nombre2", rs.getString("nombre2"));
+                fila.put("apellido1", rs.getString("apellido1"));
+                fila.put("apellido2", rs.getString("apellido2"));
+                fila.put("cedula", rs.getString("cedula"));
+                fila.put("numeroTelefono", rs.getString("numeroTelefono"));
+                fila.put("nombreUsuario", rs.getString("nombreUsuario"));
+                // ¡No pasamos la contraseña por seguridad!
+                
+                listaOficiales.add(fila);
+            }
+        } finally {
+            // Cerramos todos los recursos
+            if (rs != null) rs.close();
+            if (stmt != null) stmt.close();
+            if (con != null) con.close();
+        }
+        
+        return listaOficiales;
     }
 }

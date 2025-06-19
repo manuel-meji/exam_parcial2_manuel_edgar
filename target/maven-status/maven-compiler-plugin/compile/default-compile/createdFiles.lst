@@ -1,8 +1,6 @@
-capturarDatos.class
-<<<<<<< HEAD
-GuardarEstudianteServlet.class
 PanelEstudiantesServlet.class
-=======
+capturarDatos.class
+GestionOficialesServlet.class
 AgregarOficialServlet.class
+GuardarEstudianteServlet.class
 OficialDAO.class
->>>>>>> 1e309b842a370aacea14ac959bacaa0d5606e72b
