@@ -1,3 +1,4 @@
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/capturarDatos")
 public class capturarDatos extends HttpServlet {
+
     Connection con = null;
     Statement stmt = null;
     ResultSet rs = null;
@@ -27,7 +29,7 @@ public class capturarDatos extends HttpServlet {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/proyecto1?verifyServerCertificate=false&useSSL=true", "root", "1234");
+                    "jdbc:mysql://localhost:3306/proyecto1?verifyServerCertificate=false&useSSL=true", "root", "messi.34.ed*");
             stmt = con.createStatement();
 
             String nombreCompleto = loginAdmin(usuario, clave);
@@ -107,7 +109,8 @@ public class capturarDatos extends HttpServlet {
                 out.println("    <div class=\"menu-container\">");
                 out.println("        <h1>Bienvenido</h1>");
                 out.println("        <p>Hola, <span id=\"nombreUsuario\">" + nombreCompleto + "</span> </p>");
-                out.println("        <button type=\"button\" onclick=\"window.location.href = 'panelOficialesAdmin.html'\">");
+                // AHORA:
+                out.println("        <button type=\"button\" onclick=\"window.location.href = 'gestionOficiales'\">");
                 out.println("            Mantenimiento de Oficiales");
                 out.println("        </button>");
                 out.println("        <button type=\"button\" onclick=\"window.location.href='http://localhost:8080/exam_parcial2_manuel_edgar/panelEstudiantes'\">");
@@ -124,9 +127,15 @@ public class capturarDatos extends HttpServlet {
             res.sendRedirect("index.html");
         } finally {
             try {
-                if (rs != null) rs.close();
-                if (stmt != null) stmt.close();
-                if (con != null) con.close();
+                if (rs != null) {
+                    rs.close();
+                }
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
             } catch (SQLException e) {
                 e.printStackTrace();
             }

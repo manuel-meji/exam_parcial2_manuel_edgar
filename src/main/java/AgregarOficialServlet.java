@@ -40,14 +40,14 @@ public class AgregarOficialServlet extends HttpServlet {
 
             // 3. Si la inserción fue exitosa, redirigimos al usuario de vuelta
             // a la página del formulario. El navegador recargará la página.
-            response.sendRedirect("panelOficialesAdmin.html?estado=exito");
+            response.sendRedirect(request.getContextPath() + "/gestionOficiales");
 
         } catch (SQLException e) {
             // Si ocurre un error en la base de datos...
             e.printStackTrace(); // Imprime el error completo en la consola del servidor (muy útil para depurar)
 
             // Redirigimos a la página de nuevo pero con un indicador de error
-            response.sendRedirect("panelOficialesAdmin.html?estado=error");
+            response.sendRedirect(request.getContextPath() + "/gestionOficiales");
         } catch (ClassNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
