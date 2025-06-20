@@ -1,8 +1,5 @@
 c:\exam_parcial2_manuel_edgar\src\main\java\EditarEstudianteServlet.java
-<<<<<<< HEAD
-=======
 c:\exam_parcial2_manuel_edgar\src\main\java\PanelSalidaEstudiante.java
->>>>>>> b1c0d648cc5e59ed22a128d16c9707380e40ae8f
 c:\exam_parcial2_manuel_edgar\src\main\java\EliminarFuncionarioServlet.java
 c:\exam_parcial2_manuel_edgar\src\main\java\OficialDAO.java
 c:\exam_parcial2_manuel_edgar\src\main\java\GuardarEstudianteServlet.java
@@ -10,19 +7,13 @@ c:\exam_parcial2_manuel_edgar\src\main\java\EliminarOficialServlet.java
 c:\exam_parcial2_manuel_edgar\src\main\java\EditarFuncionarioServlet.java
 c:\exam_parcial2_manuel_edgar\src\main\java\PanelEstudiantesServlet.java
 c:\exam_parcial2_manuel_edgar\src\main\java\EditarOficialServlet.java
-<<<<<<< HEAD
-=======
 c:\exam_parcial2_manuel_edgar\src\main\java\AprobarSalidaServlet.java
 c:\exam_parcial2_manuel_edgar\src\main\java\EliminarSalidaServlet.java
->>>>>>> b1c0d648cc5e59ed22a128d16c9707380e40ae8f
 c:\exam_parcial2_manuel_edgar\src\main\java\FuncionarioDAO.java
 c:\exam_parcial2_manuel_edgar\src\main\java\EliminarEstudianteServlet.java
 c:\exam_parcial2_manuel_edgar\src\main\java\capturarDatos.java
 c:\exam_parcial2_manuel_edgar\src\main\java\AgregarFuncionarioServlet.java
 c:\exam_parcial2_manuel_edgar\src\main\java\GestionOficialesServlet.java
 c:\exam_parcial2_manuel_edgar\src\main\java\EstudianteDAO.java
-<<<<<<< HEAD
-=======
 c:\exam_parcial2_manuel_edgar\src\main\java\SalidaEstudianteDAO.java
->>>>>>> b1c0d648cc5e59ed22a128d16c9707380e40ae8f
 c:\exam_parcial2_manuel_edgar\src\main\java\PanelFuncionariosServlet.java

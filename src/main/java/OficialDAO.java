@@ -4,7 +4,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -87,26 +86,40 @@ public class OficialDAO {
         }
     }
 
-    public List<Map<String, Object>> obtenerTodosLosOficiales() throws SQLException, ClassNotFoundException {
+    public List<Map<String, Object>> obtenerTodosLosOficiales(String busqueda) throws SQLException, ClassNotFoundException {
         List<Map<String, Object>> listaOficiales = new ArrayList<>();
         Connection con = null;
-        Statement stmt = null;
+        PreparedStatement pstmt = null; // Cambiado a PreparedStatement por seguridad
         ResultSet rs = null;
 
+        // La consulta base
         String sql = "SELECT * FROM usuarios WHERE tipoUsuario='Guarda'";
 
+        // Si se proporciona un término de búsqueda, se añade la condición a la consulta
+        if (busqueda != null && !busqueda.trim().isEmpty()) {
+            sql += " AND (nombre1 LIKE ? OR apellido1 LIKE ? OR cedula LIKE ? OR nombreUsuario LIKE ?)";
+        }
+
         try {
-            // Usamos tu método de conexión
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/proyecto1?verifyServerCertificate=false&useSSL=true",
                     "root",
-                    "1234"); // ¡RECUERDA USAR TU CONTRASEÑA!
+                    "1234"); 
 
-            stmt = con.createStatement();
-            rs = stmt.executeQuery(sql);
+            pstmt = con.prepareStatement(sql);
 
-            // Recorremos los resultados y los guardamos en la lista
+            // Si hay un término de búsqueda, se asignan los valores a los placeholders '?'
+            if (busqueda != null && !busqueda.trim().isEmpty()) {
+                String parametroLike = "%" + busqueda + "%";
+                pstmt.setString(1, parametroLike);
+                pstmt.setString(2, parametroLike);
+                pstmt.setString(3, parametroLike);
+                pstmt.setString(4, parametroLike);
+            }
+
+            rs = pstmt.executeQuery();
+
             while (rs.next()) {
                 Map<String, Object> fila = new HashMap<>();
                 fila.put("nombre1", rs.getString("nombre1"));
@@ -117,22 +130,13 @@ public class OficialDAO {
                 fila.put("numeroTelefono", rs.getString("numeroTelefono"));
                 fila.put("nombreUsuario", rs.getString("nombreUsuario"));
                 fila.put("contraseña", rs.getString("contraseña"));
-
                 listaOficiales.add(fila);
             }
         } finally {
-            // Cerramos todos los recursos
-            if (rs != null) {
-                rs.close();
-            }
-            if (stmt != null) {
-                stmt.close();
-            }
-            if (con != null) {
-                con.close();
-            }
+            if (rs != null) rs.close();
+            if (pstmt != null) pstmt.close(); // Se cierra el PreparedStatement
+            if (con != null) con.close();
         }
-
         return listaOficiales;
     }
 

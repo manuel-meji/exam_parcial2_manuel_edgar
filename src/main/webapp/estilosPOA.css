@@ -65,28 +65,30 @@ body {
     box-shadow: 0 0 0 2px rgba(0, 86, 210, 0.1);
 }
 
-/* Botones */
+/* Estilos para los botones del formulario principal (izquierda) */
 .footer-buttons {
     display: flex;
     gap: 10px;
     margin-top: 15px;
 }
 
-.footer-buttons button {
-    flex: 1;
+.footer-buttons > * { /* Se aplica a <button> y <a> dentro */
+    flex: 1; /* Hace que se estiren para ocupar el espacio */
     padding: 10px 0;
     font-weight: bold;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
+    text-align: center;
+    text-decoration: none;
 }
 
+/* Estilos generales para botones que se pueden reutilizar */
 .add-button {
     background-color: #0056d2;
     color: white;
 }
-
 .add-button:hover {
     background-color: #0041a8;
 }
@@ -95,9 +97,24 @@ body {
     background-color: #6c757d;
     color: white;
 }
-
 .clear-button:hover {
     background-color: #5a6268;
+}
+
+.edit-button {
+    background-color: #ffaa00;
+    color: white;
+}
+.edit-button:hover {
+    background-color: #e69900;
+}
+
+.delete-button {
+    background-color: #c1121f;
+    color: white;
+}
+.delete-button:hover {
+    background-color: #9b0d18;
 }
 
 /* Tabla */
@@ -109,6 +126,34 @@ body {
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     overflow-x: auto;
 }
+
+/* Formulario de Búsqueda */
+.search-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.search-form input[type="text"] {
+    flex-grow: 1;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.search-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+/* Botones específicos de búsqueda para que no se estiren */
+.search-buttons .add-button,
+.search-buttons .clear-button {
+    padding: 10px 20px;
+    white-space: nowrap; /* Evita que el texto se parta */
+}
+
 
 table {
     width: 100%;
@@ -128,24 +173,6 @@ th, td {
 
 tbody tr:hover {
     background-color: #f9f9f9;
-}
-
-.edit-button {
-    background-color: #ffaa00;
-    color: white;
-}
-
-.edit-button:hover {
-    background-color: #e69900;
-}
-
-.delete-button {
-    background-color: #c1121f;
-    color: white;
-}
-
-.delete-button:hover {
-    background-color: #9b0d18;
 }
 
 .footer {
