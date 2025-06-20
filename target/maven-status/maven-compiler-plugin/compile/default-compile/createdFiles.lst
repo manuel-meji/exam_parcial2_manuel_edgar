@@ -1,0 +1,15 @@
+EliminarOficialServlet.class
+EliminarEstudianteServlet.class
+OficialDAO.class
+EditarEstudianteServlet.class
+GestionOficialesServlet.class
+EditarFuncionarioServlet.class
+EditarOficialServlet.class
+EstudianteDAO.class
+PanelFuncionariosServlet.class
+FuncionarioDAO.class
+PanelEstudiantesServlet.class
+AgregarFuncionarioServlet.class
+capturarDatos.class
+EliminarFuncionarioServlet.class
+GuardarEstudianteServlet.class
