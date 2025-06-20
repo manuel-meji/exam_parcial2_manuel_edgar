@@ -12,7 +12,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.JOptionPane;
 
 @WebServlet("/capturarDatos")
 public class capturarDatos extends HttpServlet {
@@ -124,7 +123,7 @@ public class capturarDatos extends HttpServlet {
                 out.println("</body>");
                 out.println("</html>");
             } else if(loginOficial(usuario, clave) != null) {
-                res.sendRedirect("panelFuncionariosOficiales.html");               
+                res.sendRedirect(req.getContextPath() + "/panelFuncionarios");              
             } else{
                  res.sendRedirect("index.html");
             }
