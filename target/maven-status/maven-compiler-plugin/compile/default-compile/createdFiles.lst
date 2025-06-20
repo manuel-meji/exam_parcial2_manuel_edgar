@@ -1,15 +1,31 @@
 EliminarOficialServlet.class
+<<<<<<< HEAD
 EliminarEstudianteServlet.class
 OficialDAO.class
 EditarEstudianteServlet.class
+=======
+EliminarSalidaServlet.class
+EliminarEstudianteServlet.class
+OficialDAO.class
+EditarEstudianteServlet.class
+AprobarSalidaServlet.class
+>>>>>>> b1c0d648cc5e59ed22a128d16c9707380e40ae8f
 GestionOficialesServlet.class
 EditarFuncionarioServlet.class
 EditarOficialServlet.class
 EstudianteDAO.class
 PanelFuncionariosServlet.class
 FuncionarioDAO.class
+<<<<<<< HEAD
+=======
+PanelSalidaEstudiante.class
+>>>>>>> b1c0d648cc5e59ed22a128d16c9707380e40ae8f
 PanelEstudiantesServlet.class
 AgregarFuncionarioServlet.class
 capturarDatos.class
 EliminarFuncionarioServlet.class
 GuardarEstudianteServlet.class
+<<<<<<< HEAD
+=======
+SalidaEstudianteDAO.class
+>>>>>>> b1c0d648cc5e59ed22a128d16c9707380e40ae8f
