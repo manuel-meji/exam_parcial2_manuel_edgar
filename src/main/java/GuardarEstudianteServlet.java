@@ -1,12 +1,8 @@
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.sql.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,38 +17,34 @@ public class GuardarEstudianteServlet extends HttpServlet {
         response.setContentType("text/html; charset=UTF-8");
         PrintWriter out = response.getWriter();
 
-        // Retrieve form parameters
-        String primerNombre = request.getParameter("primerNombre");
-        String segundoNombre = request.getParameter("segundoNombre");
-        String primerApellido = request.getParameter("primerApellido");
-        String segundoApellido = request.getParameter("segundoApellido");
-        String identificacion = request.getParameter("identificacion");
-        String fechaNacimiento = request.getParameter("fechaNacimiento");
         String carnet = request.getParameter("carnet");
+        String nombre1 = request.getParameter("nombre1");
+        String nombre2 = request.getParameter("nombre2");
+        String apellido1 = request.getParameter("apellido1");
+        String apellido2 = request.getParameter("apellido2");
+        String cedula = request.getParameter("cedula");
         String nacionalidad = request.getParameter("nacionalidad");
-        String distrito = request.getParameter("direccion");
+        String direccion = request.getParameter("direccion");
+        String fechaNacimientoStr = request.getParameter("fechaNacimiento");
 
-        // Validate required fields
         StringBuilder errorMessage = new StringBuilder();
-        if (isEmpty(primerNombre)) errorMessage.append("Primer Nombre es requerido.<br>");
-        if (isEmpty(primerApellido)) errorMessage.append("Primer Apellido es requerido.<br>");
-        if (isEmpty(segundoApellido)) errorMessage.append("Segundo Apellido es requerido.<br>");
-        if (isEmpty(identificacion)) errorMessage.append("Número de identificación es requerido.<br>");
-        if (isEmpty(fechaNacimiento)) errorMessage.append("Fecha de nacimiento es requerida.<br>");
-        if (isEmpty(carnet)) errorMessage.append("Carnet estudiantil es requerido.<br>");
-        if (isEmpty(nacionalidad)) errorMessage.append("Nacionalidad es requerida.<br>");
-        if (isEmpty(distrito)) errorMessage.append("Distrito es requerido.<br>");
+        if (isEmpty(carnet)) errorMessage.append("Carnet es requerido.<br>");
+        if (isEmpty(nombre1)) errorMessage.append("Nombre1 es requerido.<br>");
+        if (isEmpty(apellido1)) errorMessage.append("Apellido1 es requerido.<br>");
+        if (isEmpty(apellido2)) errorMessage.append("Apellido2 es requerido.<br>");
+        if (isEmpty(cedula)) errorMessage.append("Cédula es requerida.<br>");
+        if (isEmpty(direccion)) errorMessage.append("Dirección es requerida.<br>");
+        if (isEmpty(fechaNacimientoStr)) errorMessage.append("Fecha de Nacimiento es requerida.<br>");
 
-        // Validate date format
-        java.sql.Date sqlFechaNacimiento = null;
-        if (!isEmpty(fechaNacimiento)) {
+        Date fechaNacimiento = null;
+        if (!isEmpty(fechaNacimientoStr)) {
             try {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                sdf.setLenient(false); // Strict parsing
-                java.util.Date parsedDate = sdf.parse(fechaNacimiento);
-                sqlFechaNacimiento = new java.sql.Date(parsedDate.getTime());
+                sdf.setLenient(false);
+                java.util.Date parsedDate = sdf.parse(fechaNacimientoStr);
+                fechaNacimiento = new Date(parsedDate.getTime());
             } catch (ParseException e) {
-                errorMessage.append("Fecha de nacimiento debe estar en formato AAAA-MM-DD.<br>");
+                errorMessage.append("Fecha de Nacimiento debe estar en formato AAAA-MM-DD.<br>");
             }
         }
 
@@ -61,48 +53,13 @@ public class GuardarEstudianteServlet extends HttpServlet {
             return;
         }
 
-        Connection con = null;
-        PreparedStatement pstmt = null;
-
+        EstudianteDAO dao = new EstudianteDAO();
         try {
-            // Load MySQL driver
-            Class.forName("com.mysql.jdbc.Driver");
-            // Establish database connection
-            con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/proyecto1?verifyServerCertificate=false&useSSL=true", "root", "1234");
-
-            // Prepare SQL insert query
-            String sql = "INSERT INTO estudiantes (nombre1, nombre2, apellido1, apellido2, cedula, fechaNacimiento, carnet, nacionalidad, direccion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            pstmt = con.prepareStatement(sql);
-            pstmt.setString(1, primerNombre);
-            pstmt.setString(2, segundoNombre != null ? segundoNombre : "");
-            pstmt.setString(3, primerApellido);
-            pstmt.setString(4, segundoApellido);
-            pstmt.setString(5, identificacion);
-            pstmt.setDate(6, sqlFechaNacimiento); // Use java.sql.Date
-            pstmt.setString(7, carnet);
-            pstmt.setString(8, nacionalidad);
-            pstmt.setString(9, distrito);
-
-            // Execute the insert query
-            int rowsAffected = pstmt.executeUpdate();
-
-            // Generate HTML response for success
-            sendSuccessResponse(out, rowsAffected > 0 ? "Estudiante agregado correctamente." : "Error al agregar estudiante.");
-
-        } catch (SQLException e) {
+            dao.agregarEstudiante(carnet, nombre1, nombre2, apellido1, apellido2, cedula, nacionalidad, direccion, fechaNacimiento);
+            sendSuccessResponse(out, "Estudiante agregado correctamente.");
+        } catch (Exception e) {
             sendErrorResponse(out, "Error al agregar estudiante: " + e.getMessage());
             e.printStackTrace();
-        } catch (Exception e) {
-            sendErrorResponse(out, "Error inesperado al agregar estudiante: " + e.getMessage());
-            e.printStackTrace();
-        } finally {
-            try {
-                if (pstmt != null) pstmt.close();
-                if (con != null) con.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
     }
 
@@ -153,7 +110,7 @@ public class GuardarEstudianteServlet extends HttpServlet {
         out.println("  <div class=\"message-container\">");
         out.println("    <div class=\"message-box\">");
         out.println("      <h3>" + message + "</h3>");
-        out.println("      <a href=\"/panelEstudiantes\">Volver al Panel de Estudiantes</a>");
+        out.println("      <a href=\"http://localhost:8080/exam_parcial2_manuel_edgar/panelEstudiantes\">Volver al Panel de Estudiantes</a>");
         out.println("    </div>");
         out.println("  </div>");
         out.println("</body>");
