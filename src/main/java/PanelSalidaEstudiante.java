@@ -121,11 +121,9 @@ public class PanelSalidaEstudiante extends HttpServlet {
         out.println("        <li class=\"dropdown\">");
         out.println("          <a href=\"#\">Ingresos ▼</a>");
         out.println("          <ul class=\"dropdown-menu\">");
-        out.println("            <li><a href=\"panelIngresoFuncionarioOficiales.html\">Ingreso Funcionario</a></li>");
-        out.println(
-                "            <li><a href=\"panelIngresoPersonaExternaOficales.html\">Ingreso Persona Externa</a></li>");
-        out.println(
-                "            <li><a href=\"panelIngresoVehiculoExternoOficiales.html\">Ingreso Vehículo Externo</a></li>");
+        out.println("            <li><a href=\"http://localhost:8080/exam_parcial2_manuel_edgar/panelIngresoFuncionario\">Ingreso Funcionario</a></li>");
+        out.println("            <li><a href=\"panelIngresoPersonaExternaOficales.html\">Ingreso Persona Externa</a></li>");
+        out.println("            <li><a href=\"panelIngresoVehiculoExternoOficiales.html\">Ingreso Vehículo Externo</a></li>");
         out.println("          </ul>");
         out.println("        </li>");
         out.println("      </ul>");
