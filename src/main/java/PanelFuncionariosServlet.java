@@ -41,8 +41,21 @@ public class PanelFuncionariosServlet extends HttpServlet {
         out.println("<body>");
         
         // --- Navbar superior (COMPLETA) ---
-        out.println("  <header class=\"navbar\"><h1 class=\"logo\">Gestión de Seguridad</h1><nav><ul><li><a href=\"http://localhost:8080/exam_parcial2_manuel_edgar/panelSalidaEstudiante\">Salida de Estudiantes</a></li><li class=\"active\"><a href=\"#\">Funcionarios</a></li><li class=\"dropdown\"><a href=\"#\">Ingresos ▼</a><ul class=\"dropdown-menu\"><li><a href=\"#\">Ingreso Funcionario</a></li><li><a href=\"#\">Ingreso Persona Externa</a></li><li><a href=\"#\">Ingreso Vehículo Externo</a></li></ul></li></ul></nav></header>");
-        
+      out.println(
+  "  <header class=\"navbar\">"
++ "    <h1 class=\"logo\">Gestión de Seguridad</h1>"
++ "    <nav>"
++ "      <ul>"
++ "        <li><a href=\"http://localhost:8080/exam_parcial2_manuel_edgar/panelSalidaEstudiante\">Salida de Estudiantes</a></li>"
++ "        <li class=\"active\"><a href=\"#\">Funcionarios</a></li>"
++ "        <li><a href=\"http://localhost:8080/exam_parcial2_manuel_edgar/panelIngresoFuncionario\">Ingreso Funcionario</a></li>"
++ "        <li> <a href=\"http://localhost:8080/exam_parcial2_manuel_edgar/index.html\" > Salir</a></li>"
++ "      </ul>"
++ "    </nav>"
++ "  </header>"
+);
+
+         
         out.println("  <main class=\"container\">");
         out.println("    <h2 class=\"page-title\">Registra los funcionarios del CTP UPALA</h2>");
         out.println("    <div class=\"main-content\">");

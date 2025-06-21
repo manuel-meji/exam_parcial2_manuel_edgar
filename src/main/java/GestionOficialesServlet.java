@@ -1,3 +1,4 @@
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -10,9 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 // Asegúrate de que esta ruta sea correcta
-
 @WebServlet("/gestionOficiales")
 public class GestionOficialesServlet extends HttpServlet {
+
     private static final long serialVersionUID = 1L;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -37,7 +38,19 @@ public class GestionOficialesServlet extends HttpServlet {
         out.println("<link rel=\"stylesheet\" href=\"estilosPOA.css\">");
         out.println("<link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap\" rel=\"stylesheet\">");
         out.println("</head><body>");
-        out.println("<header class=\"navbar\"><h1 class=\"logo\">Administración</h1><nav><ul><li class=\"active\"><a href=\"gestionOficiales\">Oficiales</a></li><li><a href=\"panelEstudiantes\">Estudiantes</a></li></ul></nav></header>");
+        out.println(
+                "<header class=\"navbar\">"
+                + "<h1 class=\"logo\">Administración</h1>"
+                + "<nav>"
+                + "<ul>"
+                + "<li class=\"active\"><a href=\"gestionOficiales\">Oficiales</a></li>"
+                + "<li><a href=\"panelEstudiantes\">Estudiantes</a></li>"
+                + "<li><a href=\"index.html\">Salir</a></li>"
+                + "</ul>"
+                + "</nav>"
+                + "</header>"
+        );
+
         out.println("<div class=\"container\"><div class=\"main-content\">");
 
         // --- Formulario de Agregar/Editar ---
@@ -55,7 +68,7 @@ public class GestionOficialesServlet extends HttpServlet {
         out.println("   <div class=\"footer-buttons\"><button type=\"button\" class=\"clear-button\" onclick=\"limpiarYResetearForm()\">Limpiar</button><button type=\"submit\" class=\"add-button\" id=\"btnAgregar\">Agregar</button></div>");
         out.println("   <div class=\"footer-buttons\"><button type=\"button\" class=\"edit-button\" id=\"btnEditarForm\" onclick=\"document.getElementById('formOficial').submit();\">Guardar Cambios</button></div>");
         out.println("</form>");
-        
+
         // --- SECCIÓN DE LA TABLA CON BÚSQUEDA ---
         out.println("<div class=\"table-section\">");
 
@@ -102,7 +115,7 @@ public class GestionOficialesServlet extends HttpServlet {
             }
         } else {
             out.println("<tr><td colspan=\"6\" style=\"text-align:center;\">");
-            if(terminoBusqueda != null && !terminoBusqueda.trim().isEmpty()) {
+            if (terminoBusqueda != null && !terminoBusqueda.trim().isEmpty()) {
                 out.println("No se encontraron resultados para '<b>" + terminoBusqueda + "</b>'.");
             } else {
                 out.println("No hay oficiales registrados.");
@@ -112,9 +125,9 @@ public class GestionOficialesServlet extends HttpServlet {
 
         out.println("      </tbody></table>");
         out.println("</div></div></div>");
-        
+
         out.println("<footer class=\"footer\">© 2025 Seguridad y Tecnología • Todos los derechos reservados</footer>");
-        
+
         out.println("<script>");
         out.println("const form = document.getElementById('formOficial');");
         out.println("const btnAgregar = document.getElementById('btnAgregar');");
@@ -145,7 +158,7 @@ public class GestionOficialesServlet extends HttpServlet {
         out.println("}");
         out.println("document.addEventListener('DOMContentLoaded', function() { limpiarYResetearForm(); });");
         out.println("</script>");
-        
+
         out.println("</body></html>");
     }
 }

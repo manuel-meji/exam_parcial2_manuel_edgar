@@ -308,35 +308,3 @@ tbody tr:hover {
     flex: 1 1 100%;
   }
 }
-/* --- Estilos para Mensajes de Notificación --- */
-.alert {
-    padding: 15px;
-    margin-bottom: 20px;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    font-weight: bold;
-}
-.alert-success {
-    color: #155724;
-    background-color: #d4edda;
-    border-color: #c3e6cb;
-}
-.alert-error {
-    color: #721c24;
-    background-color: #f8d7da;
-    border-color: #f5c6cb;
-}
-
-/* --- Estilo para que el enlace 'Eliminar' se vea como un botón --- */
-.btn-danger-link {
-    display: inline-block;
-    padding: 5px 10px;
-    background-color: #c1121f; /* Mismo color que tus botones de peligro */
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 12px;
-}
-.btn-danger-link:hover {
-    background-color: #9b0d18;
-}

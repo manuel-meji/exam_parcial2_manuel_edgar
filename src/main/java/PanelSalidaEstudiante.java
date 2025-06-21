@@ -1,19 +1,19 @@
+
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
-import java.sql.Time;
-import java.text.SimpleDateFormat;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.sql.SQLException;
 
 @WebServlet("/panelSalidaEstudiante")
 public class PanelSalidaEstudiante extends HttpServlet {
+
     private static final long serialVersionUID = 1L;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -70,7 +70,7 @@ public class PanelSalidaEstudiante extends HttpServlet {
         out.println("        console.log('Carnet: ' + carnet + ', Motivo: ' + motivo);");
         out.println("        var fecha = new Date().toISOString().split('T')[0];");
         out.println("        var hora = new Date().toTimeString().split(' ')[0];");
-        out.println("        var nombreUsuarioGuarda = 'Oficial1';");
+        out.println("        var nombreUsuarioGuarda = 'Mexicano';");
         out.println("        var xhr = new XMLHttpRequest();");
         out.println("        xhr.open('POST', '" + request.getContextPath() + "/aprobarSalida', true);");
         out.println("        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');");
@@ -116,16 +116,18 @@ public class PanelSalidaEstudiante extends HttpServlet {
         out.println("    <h1 class=\"logo\">Gestión de Seguridad</h1>");
         out.println("    <nav>");
         out.println("      <ul>");
-        out.println("        <li class=\"active\"><a href=\"#\">Salida de Estudiantes</a></li>");
-        out.println("        <li><a href=\"http://localhost:8080/exam_parcial2_manuel_edgar/panelFuncionarios\">Funcionarios</a></li>");
-        out.println("        <li class=\"dropdown\">");
-        out.println("          <a href=\"#\">Ingresos ▼</a>");
-        out.println("          <ul class=\"dropdown-menu\">");
-        out.println("            <li><a href=\"http://localhost:8080/exam_parcial2_manuel_edgar/panelIngresoFuncionario\">Ingreso Funcionario</a></li>");
-        out.println("            <li><a href=\"panelIngresoPersonaExternaOficales.html\">Ingreso Persona Externa</a></li>");
-        out.println("            <li><a href=\"panelIngresoVehiculoExternoOficiales.html\">Ingreso Vehículo Externo</a></li>");
-        out.println("          </ul>");
-        out.println("        </li>");
+        out.println("        <li class=\"active\">"
+                + "<a href=\"http://localhost:8080/exam_parcial2_manuel_edgar/panelSalidaEstudiante\">"
+                + "Salida de Estudiantes</a></li>");
+        out.println("        <li>"
+                + "<a href=\"http://localhost:8080/exam_parcial2_manuel_edgar/panelFuncionarios\">"
+                + "Funcionarios</a></li>");
+        out.println("        <li>"
+                + "<a href=\"http://localhost:8080/exam_parcial2_manuel_edgar/panelIngresoFuncionario\">"
+                + "Ingreso Funcionario</a></li>");
+        out.println("        <li>"
+                + "<a href=\"http://localhost:8080/exam_parcial2_manuel_edgar/index.html\" >"
+                + "Salir</a></li>");
         out.println("      </ul>");
         out.println("    </nav>");
         out.println("  </header>");

@@ -1,8 +1,10 @@
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
 import java.util.List;
 import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/panelEstudiantes")
 public class PanelEstudiantesServlet extends HttpServlet {
+
     private static final long serialVersionUID = 1L;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -41,11 +44,19 @@ public class PanelEstudiantesServlet extends HttpServlet {
         out.println("    <h1 class=\"logo\">Administración</h1>");
         out.println("    <nav>");
         out.println("      <ul>");
-        out.println("        <li><a href=\"gestionOficiales\">Oficiales</a></li>");
-        out.println("        <li class=\"active\"><a href=\"#\">Estudiantes</a></li>");
+        out.println("        <li><a href=\""
+                + request.getContextPath()
+                + "/gestionOficiales\">Oficiales</a></li>");
+        out.println("        <li class=\"active\"><a href=\""
+                + request.getContextPath()
+                + "/panelEstudiantes\">Estudiantes</a></li>");
+        out.println("        <li><a href=\""
+                + request.getContextPath()
+                + "/index.html\">Salir</a></li>");
         out.println("      </ul>");
         out.println("    </nav>");
         out.println("  </header>");
+
         out.println("  <main class=\"container\">");
         out.println("    <div class=\"main-content\">");
         out.println("      <section class=\"form-section\">");
@@ -131,9 +142,9 @@ public class PanelEstudiantesServlet extends HttpServlet {
         out.println("          <tbody>");
         if (listaEstudiantes != null && !listaEstudiantes.isEmpty()) {
             for (Map<String, Object> estudiante : listaEstudiantes) {
-                String nombreCompleto = estudiante.get("nombre1") + " " +
-                        (estudiante.get("nombre2") != null ? estudiante.get("nombre2") + " " : "") +
-                        estudiante.get("apellido1") + " " + estudiante.get("apellido2");
+                String nombreCompleto = estudiante.get("nombre1") + " "
+                        + (estudiante.get("nombre2") != null ? estudiante.get("nombre2") + " " : "")
+                        + estudiante.get("apellido1") + " " + estudiante.get("apellido2");
                 String carnet = (String) estudiante.get("carnet");
                 String cedula = (String) estudiante.get("cedula");
                 Date fechaNacimiento = (Date) estudiante.get("fechaNacimiento");
