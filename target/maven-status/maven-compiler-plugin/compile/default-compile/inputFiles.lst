@@ -1,10 +1,14 @@
 c:\exam_parcial2_manuel_edgar\src\main\java\EditarEstudianteServlet.java
+c:\exam_parcial2_manuel_edgar\src\main\java\IngresoDAO.java
 c:\exam_parcial2_manuel_edgar\src\main\java\PanelSalidaEstudiante.java
 c:\exam_parcial2_manuel_edgar\src\main\java\EliminarFuncionarioServlet.java
 c:\exam_parcial2_manuel_edgar\src\main\java\AgregarIngresoServlet.java
 c:\exam_parcial2_manuel_edgar\src\main\java\OficialDAO.java
 c:\exam_parcial2_manuel_edgar\src\main\java\AgregarOficialServlet.java
+<<<<<<< HEAD
 c:\exam_parcial2_manuel_edgar\src\main\java\IngresoFuncionarioDAO.java
+=======
+>>>>>>> f582068b70b5faf1c320aa3aff690de21efe5f7a
 c:\exam_parcial2_manuel_edgar\src\main\java\GuardarEstudianteServlet.java
 c:\exam_parcial2_manuel_edgar\src\main\java\EliminarOficialServlet.java
 c:\exam_parcial2_manuel_edgar\src\main\java\EditarFuncionarioServlet.java
