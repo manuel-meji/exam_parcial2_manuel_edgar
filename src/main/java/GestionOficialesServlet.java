@@ -1,4 +1,3 @@
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -25,7 +24,7 @@ public class GestionOficialesServlet extends HttpServlet {
         List<Map<String, Object>> listaOficiales = null;
 
         try {
-            listaOficiales = dao.obtenerTodosLosOficiales(terminoBusqueda);
+            listaOficiales = dao.obtenerTodosLosOficiales(null); // Fetch all officials for client-side filtering
         } catch (Exception e) {
             e.printStackTrace();
             out.println("<h1>Error al conectar con la base de datos: " + e.getMessage() + "</h1>");
@@ -74,14 +73,10 @@ public class GestionOficialesServlet extends HttpServlet {
 
         // --- FORMULARIO DE BÚSQUEDA CON LA ESTRUCTURA HTML REVISADA ---
         out.println("   <form action=\"gestionOficiales\" method=\"GET\" class=\"search-form\">");
-        out.println("      <input type=\"text\" name=\"busqueda\" placeholder=\"Buscar por nombre, ID, usuario...\" value=\"" + (terminoBusqueda != null ? terminoBusqueda : "") + "\">");
-        out.println("      <div class=\"search-buttons\">"); // Nuevo div para agrupar solo los botones de búsqueda
-        out.println("         <button type=\"submit\" class=\"add-button\">Buscar</button>");
-        out.println("         <a href=\"gestionOficiales\" class=\"clear-button\">Limpiar</a>");
-        out.println("      </div>");
+        out.println("      <input type=\"text\" name=\"busqueda\" id=\"buscarOficial\" placeholder=\"Buscar por nombre, ID, usuario...\" value=\"" + (terminoBusqueda != null ? terminoBusqueda : "") + "\" onkeyup=\"filtrarTabla()\">");
         out.println("   </form>");
 
-        out.println("   <table>");
+        out.println("   <table id=\"oficialesTable\">");
         out.println("      <thead><tr><th>Nombre</th><th>ID</th><th>Teléfono</th><th>Usuario</th><th>Contraseña</th><th>Acciones</th></tr></thead><tbody>");
 
         if (listaOficiales != null && !listaOficiales.isEmpty()) {
@@ -114,13 +109,7 @@ public class GestionOficialesServlet extends HttpServlet {
                 out.println("</tr>");
             }
         } else {
-            out.println("<tr><td colspan=\"6\" style=\"text-align:center;\">");
-            if (terminoBusqueda != null && !terminoBusqueda.trim().isEmpty()) {
-                out.println("No se encontraron resultados para '<b>" + terminoBusqueda + "</b>'.");
-            } else {
-                out.println("No hay oficiales registrados.");
-            }
-            out.println("</td></tr>");
+            out.println("<tr><td colspan=\"6\" style=\"text-align:center;\">No hay oficiales registrados.</td></tr>");
         }
 
         out.println("      </tbody></table>");
@@ -157,6 +146,36 @@ public class GestionOficialesServlet extends HttpServlet {
         out.println("   btnEditarForm.style.display = 'none';");
         out.println("}");
         out.println("document.addEventListener('DOMContentLoaded', function() { limpiarYResetearForm(); });");
+        out.println("function filtrarTabla() {");
+        out.println("    var input = document.getElementById('buscarOficial').value.toLowerCase();");
+        out.println("    var table = document.getElementById('oficialesTable');");
+        out.println("    var tr = table.getElementsByTagName('tr');");
+        out.println("    for (var i = 1; i < tr.length; i++) { // Start from 1 to skip header row");
+        out.println("        var found = false;");
+        out.println("        var td = tr[i].getElementsByTagName('td');");
+        out.println("        for (var j = 0; j < td.length - 1; j++) { // Exclude actions column");
+        out.println("            if (td[j] && td[j].textContent.toLowerCase().indexOf(input) > -1) {");
+        out.println("                found = true;");
+        out.println("                break;");
+        out.println("            }");
+        out.println("        }");
+        out.println("        tr[i].style.display = found ? '' : 'none';");
+        out.println("    }");
+        out.println("    // Handle case when no matches are found");
+        out.println("    var noResults = true;");
+        out.println("    for (var i = 1; i < tr.length; i++) {");
+        out.println("        if (tr[i].style.display !== 'none') {");
+        out.println("            noResults = false;");
+        out.println("            break;");
+        out.println("        }");
+        out.println("    }");
+        out.println("    var tbody = table.getElementsByTagName('tbody')[0];");
+        out.println("    if (noResults && input !== '') {");
+        out.println("        tbody.innerHTML = '<tr><td colspan=\"6\" style=\"text-align:center;\">No se encontraron resultados para \\'<b>' + input + '</b>\\'.</td></tr>';");
+        out.println("    } else if (input === '' && listaOficiales.length === 0) {");
+        out.println("        tbody.innerHTML = '<tr><td colspan=\"6\" style=\"text-align:center;\">No hay oficiales registrados.</td></tr>';");
+        out.println("    }");
+        out.println("}");
         out.println("</script>");
 
         out.println("</body></html>");
