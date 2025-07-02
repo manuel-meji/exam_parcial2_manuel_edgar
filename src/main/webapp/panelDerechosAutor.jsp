@@ -10,15 +10,11 @@
 </head>
 <body>
     <header class="navbar">
-        <h1 class="logo">Gestión de Seguridad</h1>
+        <h1 class="logo">Derechos de Autor</h1>
         <nav>
             <ul>
-                <li><a href="panelSalidaEstudiante.jsp">Salida de Estudiantes</a></li>
-                <li><a href="panelFuncionarios.jsp">Funcionarios</a></li>
-                <li><a href="panelIngresoFuncionarios.jsp">Ingreso Funcionario</a></li>
-                <li><a href="gestionOficiales.jsp">Oficiales</a></li>
-                <li><a href="panelEstudiantes.jsp">Estudiantes</a></li>
                 <li class="active"><a href="#">Derechos de Autor</a></li>
+                <li><a href="panelAyuda.jsp">Ayuda</a></li>
                 <li><a href="login.jsp?logout=true">Salir</a></li>
             </ul>
         </nav>
@@ -26,25 +22,25 @@
 
     <main class="container">
         <h2 class="page-title">Derechos de Autor</h2>
-        <p class="intro-text">Este proyecto fue desarrollado como parte de un trabajo académico para el curso de Programación Avanzada. A continuación, presentamos a los desarrolladores responsables:</p>
+        <p class="intro-text">Este proyecto fue desarrollado como parte de un trabajo académico para el curso de Programación II. A continuación, presentamos a los desarrolladores responsables:</p>
         <div class="developers-grid">
             <!-- Desarrollador 1 -->
             <div class="developer-card">
-                <img src="images/developer1.jpg" alt="Foto de Desarrollador 1" class="developer-photo">
-                <h3>Juan Pérez Gómez</h3>
-                <p><strong>Correo:</strong> juan.perez@estudiante.edu</p>
-                <p><strong>Carrera:</strong> Ingeniería en Sistemas</p>
-                <p><strong>Carné:</strong> 202100123</p>
-                <p><strong>Rol:</strong> Desarrollador principal, encargado del diseño de la base de datos y la lógica del backend.</p>
+                <img src="images/ing_mejicano.jpg" alt="Foto de Desarrollador 1" class="developer-photo">
+                <h3>Manuel Mejicano Ortiz</h3>
+                <p><strong>Correo:</strong> manuel.mejicano@ucr.ac.cr</p>
+                <p><strong>Carrera:</strong> Informática Empresarial</p>
+                <p><strong>Carné:</strong> C4H071</p>
+                <p><strong>Rol:</strong> Desarrollador y Diseñador</p>
             </div>
             <!-- Desarrollador 2 -->
             <div class="developer-card">
-                <img src="images/developer2.jpg" alt="Foto de Desarrollador 2" class="developer-photo">
-                <h3>María López Vargas</h3>
-                <p><strong>Correo:</strong> maria.lopez@estudiante.edu</p>
-                <p><strong>Carrera:</strong> Ingeniería en Computación</p>
-                <p><strong>Carné:</strong> 202100456</p>
-                <p><strong>Rol:</strong> Diseñadora de la interfaz de usuario y responsable de la experiencia visual del sistema.</p>
+                <img src="images/ing_duarte.jpg" alt="Foto de Desarrollador 2" class="developer-photo">
+                <h3>Edgar Duarte Alemán</h3>
+                <p><strong>Correo:</strong> edgar.duarte@ucr.ac.cr</p>
+                <p><strong>Carrera:</strong> Informática Empresarial</p>
+                <p><strong>Carné:</strong> C4E773</p>
+                <p><strong>Rol:</strong> Desarrollador y QA</p>
             </div>
         </div>
     </main>

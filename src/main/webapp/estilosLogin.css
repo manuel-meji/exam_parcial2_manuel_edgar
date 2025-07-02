@@ -1,17 +1,24 @@
-/* --- ESTILOS GENERALES --- */
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: url('jack-b-8Wqm1W59Baw-unsplash.jpg') no-repeat center center/cover;
-    display: grid;
-    place-items: center;
-    min-height: 100vh;
+/* Reset global */
+* {
     margin: 0;
-    padding: 1rem;
+    padding: 0;
     box-sizing: border-box;
-    position: relative;
 }
 
-/* Overlay oscuro para mayor contraste */
+/* Fuente y fondo general */
+body {
+    font-family: 'Inter', sans-serif;
+    background: url('jack-b-8Wqm1W59Baw-unsplash.jpg') no-repeat center center/cover;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 1rem;
+}
+
+/* Overlay oscuro */
 body::before {
     content: '';
     position: absolute;
@@ -20,101 +27,335 @@ body::before {
     z-index: 0;
 }
 
-/* --- FORMULARIO --- */
-form {
+/* Contenedor principal */
+.login-container {
     position: relative;
     z-index: 1;
-    background-color: rgba(255, 255, 255, 0.15);
+    display: flex;
+    max-width: 1000px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(15px);
-    padding: 2.5rem 3rem;
     border-radius: 20px;
     box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
-    width: 100%;
-    max-width: 400px;
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    transition: transform 0.3s ease-in-out;
-    color: white;
+    overflow: hidden;
+    margin: 2rem;
+}
+
+/* Sección de información */
+.info-section {
+    flex: 1;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
 }
 
-form:hover {
-    transform: scale(1.02);
+.info-section .logo {
+    width: 150px;
+    margin-bottom: 1.5rem;
 }
 
-/* --- ETIQUETAS --- */
-label {
-    display: block;
+.info-section h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 1rem;
+}
+
+.info-section p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    max-width: 400px;
+}
+
+.info-section ul {
+    list-style: disc;
+    padding-left: 1.5rem;
+    text-align: left;
+    max-width: 400px;
+}
+
+.info-section ul li {
+    font-size: 0.95rem;
     margin-bottom: 0.5rem;
+}
+
+/* Sección de formulario */
+.form-section {
+    flex: 1;
+    padding: 2rem;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-section h2 {
+    font-size: 1.6rem;
+    color: #0056d2;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.form-section form {
+    width: 100%;
+    max-width: 350px;
+}
+
+/* Campos de formulario */
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.95rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.input-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.8rem 0.8rem 0.8rem 2.5rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #0056d2;
+    box-shadow: 0 0 0 2px rgba(0, 86, 210, 0.2);
+}
+
+/* Botones */
+.form-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 8px;
     font-size: 0.95rem;
     font-weight: 600;
-    color: white;
-    text-align: left;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
 }
 
-label[for=""] {
-    font-size: 1.6rem;
-    font-weight: bold;
-    margin-bottom: 1.5rem;
+.btn-primary {
+    background: #34c759;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: #2da14e;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: #007aff;
+    color: #fff;
+}
+
+.btn-secondary:hover {
+    background: #005bb5;
+    transform: translateY(-2px);
+}
+
+.btn-icon {
+    width: 18px;
+    height: 18px;
+    margin-right: 0.5rem;
+}
+
+/* Notificación de error */
+.notification {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 0.95rem;
+    background: #ff2d55;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    z-index: 1000;
+}
+
+.notification.show {
+    opacity: 1;
+}
+
+/* Menú de administrador */
+.admin-menu {
+    position: relative;
+    z-index: 1;
+    max-width: 600px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+    padding: 2rem;
+    margin: 2rem;
     text-align: center;
 }
 
-/* --- CAMPOS DE TEXTO --- */
-input[type="text"],
-input[type="password"] {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 1.2rem;
-    border: none;
-    border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.9);
-    font-size: 1rem;
-    color: #333;
-    transition: all 0.3s ease;
-    box-sizing: border-box;
-    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.1);
+.admin-menu h2 {
+    font-size: 1.6rem;
+    color: #0056d2;
+    margin-bottom: 1rem;
+    font-weight: 600;
 }
 
-input[type="text"]:focus,
-input[type="password"]:focus {
-    outline: none;
-    border: 2px solid #8a3ffc;
-    background-color: white;
-    box-shadow: 0 0 0 4px rgba(106, 17, 203, 0.15);
+.admin-menu p {
+    font-size: 0.95rem;
+    color: #444;
+    margin-bottom: 1.5rem;
 }
 
-/* --- BOTONES --- */
-input[type="submit"],
-input[type="button"] {
-    width: 100%;
-    padding: 14px;
-    margin-top: 1rem;
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.menu-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem;
     border: none;
-    border-radius: 10px;
-    font-size: 1rem;
-    font-weight: bold;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #fff;
+    background: #007aff;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background 0.3s ease, transform 0.2s ease;
 }
 
-input[type="submit"] {
-    background: linear-gradient(90deg, #ff5f6d, #ffc371); /* Rosa salmón a melón claro */
-    color: #fff;
-    font-weight: bold;
-    box-shadow: 0 6px 12px rgba(255, 95, 109, 0.3);
-}
-
-input[type="button"] {
-    background: linear-gradient(90deg, #36d1dc, #5b86e5); /* Azul claro a azul violáceo */
-    color: #fff;
-    font-weight: bold;
-    box-shadow: 0 6px 12px rgba(91, 134, 229, 0.3);
-}
-
-input[type="submit"]:hover,
-input[type="button"]:hover {
-    opacity: 0.95;
+.menu-button:hover {
+    background: #005bb5;
     transform: translateY(-2px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
+.logout-button {
+    background: #ff2d55;
+}
 
+.logout-button:hover {
+    background: #cc1f44;
+}
+
+.menu-icon {
+    width: 18px;
+    height: 18px;
+    margin-right: 0.5rem;
+}
+
+/* Footer */
+.footer {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    margin: 2rem 0;
+    font-size: 0.85rem;
+    color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 800px) {
+    .login-container {
+        flex-direction: column;
+        margin: 1rem;
+    }
+
+    .info-section,
+    .form-section {
+        flex: none;
+        width: 100%;
+        padding: 1.5rem;
+    }
+
+    .info-section .logo {
+        width: 120px;
+    }
+
+    .info-section h1 {
+        font-size: 1.5rem;
+    }
+
+    .form-section h2 {
+        font-size: 1.4rem;
+    }
+
+    .form-actions {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 500px) {
+    .info-section h1 {
+        font-size: 1.3rem;
+    }
+
+    .info-section p,
+    .info-section ul li {
+        font-size: 0.9rem;
+    }
+
+    .form-section h2 {
+        font-size: 1.2rem;
+    }
+
+    .form-group input {
+        font-size: 0.9rem;
+        padding: 0.7rem 0.7rem 0.7rem 2.2rem;
+    }
+
+    .input-icon {
+        width: 18px;
+        height: 18px;
+    }
+
+    .btn {
+        font-size: 0.9rem;
+        padding: 0.7rem;
+    }
+
+    .menu-button {
+        font-size: 0.9rem;
+        padding: 0.7rem;
+    }
+}
