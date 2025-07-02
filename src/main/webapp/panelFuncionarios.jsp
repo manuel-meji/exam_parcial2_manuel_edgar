@@ -8,10 +8,11 @@
 <%-- 2. LÓGICA DEL SERVIDOR (CRUD COMPLETO Y AUTÓNOMO)                --%>
 <%-- ================================================================== --%>
 <%
+ request.setCharacterEncoding("UTF-8");
     // -----------------------------------------------------------------
     // ¡ATENCIÓN! CONFIGURACIÓN DE LA BASE DE DATOS
     // -----------------------------------------------------------------
-    String DB_URL = "jdbc:mysql://localhost:3306/proyecto1?verifyServerCertificate=false&useSSL=true";
+    String DB_URL = "jdbc:mysql://localhost:3306/proyecto1?verifyServerCertificate=false&useSSL=true&useUnicode=true&characterEncoding=UTF-8";
     String DB_USER = "root";
     String DB_PASS = "1234"; // ¡TU CONTRASEÑA!
     String DB_DRIVER = "com.mysql.jdbc.Driver";

@@ -17,7 +17,8 @@
         }
 
         try {
-            String url = "jdbc:mysql://localhost:3306/proyecto1?verifyServerCertificate=false&useSSL=true";
+            String url = "jdbc:mysql://localhost:3306/proyecto1?verifyServerCertificate=false&useSSL=true&useUnicode=true&characterEncoding=UTF-8";
+            
             String user = "root";
             String password = "1234";
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -65,7 +66,7 @@
         String sql = "INSERT INTO usuarios (nombre1, nombre2, apellido1, apellido2, nombreUsuario, contraseña, numeroTelefono, cedula, tipoUsuario) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
-            String url = "jdbc:mysql://localhost:3306/proyecto1?verifyServerCertificate=false&useSSL=true";
+            String url = "jdbc:mysql://localhost:3306/proyecto1?verifyServerCertificate=false&useSSL=true&useUnicode=true&characterEncoding=UTF-8";
             String user = "root";
             String password = "1234";
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -100,7 +101,7 @@
         String sql = "UPDATE usuarios SET cedula = ?, nombre1 = ?, nombre2 = ?, apellido1 = ?, apellido2 = ?, numeroTelefono = ?, nombreUsuario = ?, contraseña = ? WHERE nombreUsuario = ?";
 
         try {
-            String url = "jdbc:mysql://localhost:3306/proyecto1?verifyServerCertificate=false&useSSL=true";
+            String url = "jdbc:mysql://localhost:3306/proyecto1?verifyServerCertificate=false&useSSL=true&useUnicode=true&characterEncoding=UTF-8";
             String user = "root";
             String password = "1234";
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -135,7 +136,7 @@
         String sql = "DELETE FROM usuarios WHERE nombreUsuario = ? AND tipoUsuario = 'Guarda'";
 
         try {
-            String url = "jdbc:mysql://localhost:3306/proyecto1?verifyServerCertificate=false&useSSL=true";
+            String url = "jdbc:mysql://localhost:3306/proyecto1?verifyServerCertificate=false&useSSL=true&useUnicode=true&characterEncoding=UTF-8";
             String user = "root";
             String password = "1234";
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -156,6 +157,7 @@
 %>
 
 <%
+request.setCharacterEncoding("UTF-8"); // Aseguramos que la codificación sea UTF-8
     // 2. LÓGICA JAVA: Procesar acciones y obtener la lista de oficiales
     List<Map<String, Object>> listaOficiales = null;
     String errorDB = null;

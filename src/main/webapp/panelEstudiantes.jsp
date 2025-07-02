@@ -3,7 +3,7 @@
 <%@ page import="java.util.List, java.util.ArrayList, java.util.Map, java.util.HashMap, java.sql.*" %>
 
 <%-- prettier-ignore --%>
-<%!
+<%! // Aseguramos que la codificación sea UTF-8
     // Método para conectar a la base de datos y obtener estudiantes
     private List<Map<String, Object>> obtenerTodosLosEstudiantes() throws Exception {
         List<Map<String, Object>> estudiantes = new ArrayList<>();
@@ -12,7 +12,7 @@
         ResultSet rs = null;
 
         try {
-            String url = "jdbc:mysql://localhost:3306/proyecto1?verifyServerCertificate=false&useSSL=true";
+            String url = "jdbc:mysql://localhost:3306/proyecto1?verifyServerCertificate=false&useSSL=true&useUnicode=true&characterEncoding=UTF-8";
             String user = "root";
             String password = "1234";
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -56,7 +56,7 @@
         PreparedStatement pstmt = null;
 
         try {
-            String url = "jdbc:mysql://localhost:3306/proyecto1?verifyServerCertificate=false&useSSL=true";
+            String url = "jdbc:mysql://localhost:3306/proyecto1?verifyServerCertificate=false&useSSL=true&useUnicode=true&characterEncoding=UTF-8";
             String user = "root";
             String password = "1234";
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -92,7 +92,7 @@
         PreparedStatement pstmt = null;
 
         try {
-            String url = "jdbc:mysql://localhost:3306/proyecto1?verifyServerCertificate=false&useSSL=true";
+            String url = "jdbc:mysql://localhost:3306/proyecto1?verifyServerCertificate=false&useSSL=true&useUnicode=true&characterEncoding=UTF-8";
             String user = "root";
             String password = "1234";
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -128,7 +128,7 @@
         PreparedStatement pstmt = null;
 
         try {
-            String url = "jdbc:mysql://localhost:3306/proyecto1?verifyServerCertificate=false&useSSL=true";
+            String url = "jdbc:mysql://localhost:3306/proyecto1?verifyServerCertificate=false&useSSL=true&useUnicode=true&characterEncoding=UTF-8";
             String user = "root";
             String password = "1234";
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -150,6 +150,7 @@
 %>
 
 <%
+request.setCharacterEncoding("UTF-8"); // Aseguramos que la codificación sea UTF-8
     // 2. LÓGICA JAVA: Procesar acciones y obtener la lista de estudiantes
     List<Map<String, Object>> listaEstudiantes = null;
     String errorDB = null;

@@ -126,7 +126,7 @@
     <div class="menu-container">
         <h1>Bienvenido</h1>
         <p>Hola, <span id="nombreUsuario"><%= nombreAdmin %></span></p>
-        <button type="button" onclick="window.location.href = 'gestionOficiales'">
+        <button type="button" onclick="window.location.href = 'gestionOficiales.jsp'">
             Mantenimiento de Oficiales
         </button>
         <button type="button" onclick="window.location.href='panelEstudiantes.jsp'">
