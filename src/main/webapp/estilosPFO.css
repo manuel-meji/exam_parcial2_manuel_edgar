@@ -198,11 +198,11 @@ body {
   transition: background 0.3s ease;
 }
 .btn-primary {
-  background-color: #007aff;
+  background-color: #34c759;
   color: #fff;
 }
 .btn-primary:hover {
-  background-color: #005bb5;
+  background-color: #2da14e;
 }
 .btn-secondary {
   background-color: #ff9500;
@@ -219,11 +219,11 @@ body {
   background-color: #cc1f44;
 }
 .btn-clear {
-  background-color: #34c759;
+  background-color: #007aff ;
   color: #fff;
 }
 .btn-clear:hover {
-  background-color: #2da14e;
+  background-color: #005bb5;
 }
 .btn-primary .icon,
 .btn-secondary .icon,

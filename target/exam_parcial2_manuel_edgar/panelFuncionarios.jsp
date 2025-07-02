@@ -228,8 +228,12 @@
                             <div class="form-group"><label for="placa">Placa:</label><input type="text" id="placa" name="placa"></div>
                         </div>
                         <div class="form-actions">
-                            <button type="button" onclick="limpiarYResetearForm()" class="btn-clear">Limpiar</button>
-                            <button type="submit" id="btnAgregar" class="btn-primary">Registrar</button>
+                            <button type="button" onclick="limpiarYResetearForm()" class="btn-clear">
+                            <img src="https://img.icons8.com/?size=100&id=8068&format=png&color=FFFFFF" alt="Limpiar" style="width: 20px; height: 20px; vertical-align: middle;">
+                            Limpiar</button>
+                            <button type="submit" id="btnAgregar" class="btn-primary">
+                            <img src="https://img.icons8.com/?size=100&id=UkLBG0sZoWV0&format=png&color=FFFFFF" alt="Agregar" style="width: 20px; height: 20px; vertical-align: middle;">
+                            Registrar</button>
                             <button type="button" id="btnEditarForm" onclick="document.getElementById('formFuncionario').submit();" class="btn-secondary" style="display:none;">Guardar Cambios</button>
                         </div>
                     </form>

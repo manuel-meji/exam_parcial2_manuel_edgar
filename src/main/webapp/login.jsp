@@ -20,14 +20,12 @@
                 String contrasenaDB = rsMethod.getString("contraseña");
                 String nombreUsuarioBD = rsMethod.getString("nombreUsuario");
                 if (contrasenaDB != null && contrasenaDB.equals(contrasena) && nombreUsuarioBD.equals(idAcceso)) {
-                    String nombre1 = rsMethod.getString("nombre1");
-                    String apellido1 = rsMethod.getString("apellido1");
                     idOficialActual = idAcceso;
                     rsMethod.close(); // Buena práctica: cerrar ResultSet local
-                    return nombre1 + " " + apellido1;
+                    return idOficialActual; // Retornar el nombre de usuario del oficial
                 }
             }
-            rsMethod.close(); // Buena práctica: cerrar ResultSet local
+            rsMethod.close(); // Cerrar ResultSet local
         } catch (SQLException e) {
             System.out.println("Error al intentar iniciar sesión (Oficial): " + e.getMessage());
         }
@@ -57,7 +55,7 @@
 
 <%
     /*
-      <!-- CAMBIO AQUÍ: Comentario simplificado para no confundir al compilador -->
+     
       SCRIPTLET PRINCIPAL:
       Aquí va la lógica que estaba en el método doPost.
     */
@@ -79,7 +77,7 @@
             if (nombreAdmin != null) {
                 loginStatus = "admin_success";
             } else if (loginOficial(usuario, clave) != null) {
-                response.sendRedirect(request.getContextPath() + "/panelFuncionarios.jsp");
+                response.sendRedirect(request.getContextPath() + "/panelSalidaEstudiante.jsp");
                 return;
             } else {
                 loginStatus = "login_failed";

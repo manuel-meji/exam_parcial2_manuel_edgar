@@ -20,14 +20,12 @@
                 String contrasenaDB = rsMethod.getString("contraseña");
                 String nombreUsuarioBD = rsMethod.getString("nombreUsuario");
                 if (contrasenaDB != null && contrasenaDB.equals(contrasena) && nombreUsuarioBD.equals(idAcceso)) {
-                    String nombre1 = rsMethod.getString("nombre1");
-                    String apellido1 = rsMethod.getString("apellido1");
                     idOficialActual = idAcceso;
                     rsMethod.close(); // Buena práctica: cerrar ResultSet local
-                    return nombre1 + " " + apellido1;
+                    return idOficialActual; // Retornar el nombre de usuario del oficial
                 }
             }
-            rsMethod.close(); // Buena práctica: cerrar ResultSet local
+            rsMethod.close(); // Cerrar ResultSet local
         } catch (SQLException e) {
             System.out.println("Error al intentar iniciar sesión (Oficial): " + e.getMessage());
         }
@@ -57,7 +55,7 @@
 
 <%
     /*
-      <!-- CAMBIO AQUÍ: Comentario simplificado para no confundir al compilador -->
+     
       SCRIPTLET PRINCIPAL:
       Aquí va la lógica que estaba en el método doPost.
     */
@@ -79,7 +77,7 @@
             if (nombreAdmin != null) {
                 loginStatus = "admin_success";
             } else if (loginOficial(usuario, clave) != null) {
-                response.sendRedirect(request.getContextPath() + "/panelFuncionarios.jsp");
+                response.sendRedirect(request.getContextPath() + "/panelSalidaEstudiante.jsp");
                 return;
             } else {
                 loginStatus = "login_failed";
@@ -109,7 +107,7 @@
     <% if ("admin_success".equals(loginStatus)) { %>
         <title>Menú Principal</title>
         <style>
-            body { margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; height: 100vh; display: flex; justify-content: center; align-items: center; background: url('jack-b-8Wqm1W5Baw-unsplash.jpg') no-repeat center center/cover; position: relative; }
+            body { margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; height: 100vh; display: flex; justify-content: center; align-items: center; background: url('jack-b-8Wqm1W59Baw-unsplash.jpg') no-repeat center center/cover; position: relative; }
             body::before { content: ''; position: absolute; top: 0; left: 0; height: 100%; width: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 0; }
             .menu-container { position: relative; z-index: 1; backdrop-filter: blur(12px); background-color: rgba(255, 255, 255, 0.15); padding: 40px 60px; border-radius: 20px; box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3); text-align: center; border: 1px solid rgba(255, 255, 255, 0.3); color: white; }
             .menu-container h1 { font-size: 32px; margin-bottom: 10px; }
