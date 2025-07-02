@@ -235,7 +235,9 @@
                             <button type="submit" id="btnAgregar" class="btn-primary">
                             <img src="https://img.icons8.com/?size=100&id=UkLBG0sZoWV0&format=png&color=FFFFFF" alt="Agregar" style="width: 20px; height: 20px; vertical-align: middle;">
                             Registrar</button>
-                            <button type="button" id="btnEditarForm" onclick="document.getElementById('formFuncionario').submit();" class="btn-secondary" style="display:none;">Guardar Cambios</button>
+                            <button type="button" id="btnEditarForm" onclick="document.getElementById('formFuncionario').submit();" class="btn-secondary" style="display:none;">
+                            <img src="https://img.icons8.com/?size=100&id=83208&format=png&color=FFFFFF" alt="Guardar Cambios" style="width: 20px; height: 20px; vertical-align: middle;">
+                            Guardar Cambios</button>
                         </div>
                     </form>
                 </section>
@@ -269,8 +271,12 @@
                                 <td><%= f.get("vehiculo") %></td>
                                 <td><%= f.get("placa") != null ? f.get("placa") : "" %></td>
                                 <td>
-                                    <a href="#" onclick="cargarDatosParaEditar(<%= datosEditar %>)" style='margin-right:10px;'>Editar</a>
-                                    <a href="<%= urlEliminar %>" onclick="return confirm('¿Estás seguro de que quieres eliminar a este funcionario?');">Eliminar</a>
+                                    <a href="#" onclick="cargarDatosParaEditar(<%= datosEditar %>)" style='margin-right:10px;'>
+                                        <img src="https://img.icons8.com/?size=100&id=86374&format=png&color=FCC419" alt="Editar" style="width: 20px; height: 20px; vertical-align: middle;">
+                                    </a>
+                                    <a href="<%= urlEliminar %>" onclick="return confirm('¿Estás seguro de que quieres eliminar a este funcionario?');">
+                                        <img src="https://img.icons8.com/?size=100&id=99950&format=png&color=FF2323" alt="Eliminar" style="width: 20px; height: 20px; vertical-align: middle;">
+                                    </a>
                                 </td>
                             </tr>
                             <%  } 

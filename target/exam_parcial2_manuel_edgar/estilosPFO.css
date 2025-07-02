@@ -1,4 +1,4 @@
-/* Reset global */
+Reset global
 * {
   margin: 0;
   padding: 0;
@@ -228,8 +228,8 @@ body {
 .btn-primary .icon,
 .btn-secondary .icon,
 .btn-danger .icon,
-.btn-clear .icon {
-  margin-right: 0.4rem;
+.btn-clear img {
+  margin-right: 8px ;
 }
 
 /* Tabla */

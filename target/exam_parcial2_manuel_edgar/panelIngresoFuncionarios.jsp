@@ -238,7 +238,9 @@ String DB_URL = "jdbc:mysql://localhost:3306/proyecto1?verifyServerCertificate=f
                             </select>
                         </div>
                         <div class="actions-inline">
-                            <button class="approve-button" type="button" onclick="agregarIngreso()">Agregar Ingreso</button>
+                            <button class="approve-button" type="button" onclick="agregarIngreso()">
+                            <img src="https://img.icons8.com/?size=100&id=HskoXdFIpCjN&format=png&color=FFFFFF" alt="Agregar Ingreso" style="width: 20px; height: 20px; vertical-align: middle;">
+                            Agregar Ingreso</button>
                         </div>
                     </div>
                 </section>
@@ -273,7 +275,9 @@ String DB_URL = "jdbc:mysql://localhost:3306/proyecto1?verifyServerCertificate=f
                                 <td><%= ingreso.get("hora") %></td>
                                 <td><%= ingreso.get("nombre_usuario_guarda") %></td>
                                 <td>
-                                    <button class="delete-button-small" onclick="eliminarIngreso(<%= ingreso.get("id") %>)">Eliminar</button>
+                                    <a href="#" class="delete-button-small" onclick="eliminarIngreso(<%= ingreso.get("id") %>); return false;">
+                                        <img src="https://img.icons8.com/?size=100&id=99950&format=png&color=FF2323" alt="Eliminar" style="width: 20px; height: 20px; vertical-align: middle;">
+                                    </a>
                                 </td>
                             </tr>
                             <%  }

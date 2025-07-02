@@ -245,8 +245,12 @@ request.setCharacterEncoding("UTF-8");
                             </select>
                         </div>
                         <div class="actions-inline">
-                            <button class="approve-button" type="button" onclick="aprobarSalida()">Aprobar salida</button>
-                            <button class="delete-button" type="button" onclick="eliminarSalida(prompt('Ingrese el ID de la salida a eliminar:'))">Eliminar Salida</button>
+                            <button class="approve-button" type="button" onclick="aprobarSalida()">
+                            <img src="https://img.icons8.com/?size=100&id=HskoXdFIpCjN&format=png&color=FFFFFF" alt="Aprobar Salida Icono" style="width: 20px; height: 20px; vertical-align: middle;">
+                            Aprobar salida</button>
+                            <button class="delete-button" type="button" onclick="eliminarSalida(prompt('Ingrese el ID de la salida a eliminar:'))">
+                            <img src="https://img.icons8.com/?size=100&id=99950&format=png&color=FFFFFF" alt="Eliminar Salida Icono" style="width: 20px; height: 20px; vertical-align: middle;">
+                            Eliminar Salida</button>
                         </div>
                     </div>
                 </section>
