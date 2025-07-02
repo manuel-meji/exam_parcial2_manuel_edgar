@@ -10,6 +10,7 @@ c:\exam_parcial2_manuel_edgar\src\main\java\EliminarOficialServlet.java
 c:\exam_parcial2_manuel_edgar\src\main\java\EditarFuncionarioServlet.java
 c:\exam_parcial2_manuel_edgar\src\main\java\PanelEstudiantesServlet.java
 c:\exam_parcial2_manuel_edgar\src\main\java\EditarOficialServlet.java
+c:\exam_parcial2_manuel_edgar\src\main\java\modelo\EstudianteDAO.java
 c:\exam_parcial2_manuel_edgar\src\main\java\PanelIngresoFuncionarioServlet.java
 c:\exam_parcial2_manuel_edgar\src\main\java\AprobarSalidaServlet.java
 c:\exam_parcial2_manuel_edgar\src\main\java\EliminarSalidaServlet.java
@@ -19,6 +20,5 @@ c:\exam_parcial2_manuel_edgar\src\main\java\capturarDatos.java
 c:\exam_parcial2_manuel_edgar\src\main\java\EliminarIngresoServlet.java
 c:\exam_parcial2_manuel_edgar\src\main\java\AgregarFuncionarioServlet.java
 c:\exam_parcial2_manuel_edgar\src\main\java\GestionOficialesServlet.java
-c:\exam_parcial2_manuel_edgar\src\main\java\EstudianteDAO.java
 c:\exam_parcial2_manuel_edgar\src\main\java\SalidaEstudianteDAO.java
 c:\exam_parcial2_manuel_edgar\src\main\java\PanelFuncionariosServlet.java

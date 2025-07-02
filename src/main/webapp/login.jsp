@@ -131,8 +131,8 @@
         <button type="button" onclick="window.location.href = 'gestionOficiales'">
             Mantenimiento de Oficiales
         </button>
-        <button type="button" onclick="window.location.href='<%= request.getContextPath() %>/panelEstudiantes'">
-            Mantenimiento de Estudiantes
+        <button type="button" onclick="window.location.href='panelEstudiantes.jsp'">
+             Mantenimiento de Estudiantes
         </button>
     </div>
 <% } else { %>

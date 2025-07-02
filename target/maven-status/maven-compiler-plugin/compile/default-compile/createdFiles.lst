@@ -1,6 +1,7 @@
 EliminarOficialServlet.class
 EliminarSalidaServlet.class
 EliminarEstudianteServlet.class
+modelo\EstudianteDAO.class
 OficialDAO.class
 EditarEstudianteServlet.class
 PanelIngresoFuncionarioServlet.class
@@ -8,7 +9,6 @@ AprobarSalidaServlet.class
 GestionOficialesServlet.class
 EditarFuncionarioServlet.class
 EditarOficialServlet.class
-EstudianteDAO.class
 PanelFuncionariosServlet.class
 AgregarIngresoServlet.class
 FuncionarioDAO.class
