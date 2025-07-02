@@ -79,7 +79,7 @@
             if (nombreAdmin != null) {
                 loginStatus = "admin_success";
             } else if (loginOficial(usuario, clave) != null) {
-                response.sendRedirect(request.getContextPath() + "/panelFuncionarios");
+                response.sendRedirect(request.getContextPath() + "/panelFuncionarios.jsp");
                 return;
             } else {
                 loginStatus = "login_failed";
