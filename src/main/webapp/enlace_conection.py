@@ -3,7 +3,7 @@ from mysql.connector import Error
 import google.generativeai as genai
 
 # Configurar la API de Gemini
-genai.configure(api_key='AIzaSyBhvhVpbSJ8H5kAap-wELrXLhlzyBN8q48')  # Reemplaza TU_API_KEY si aún no lo has hecho
+genai.configure(api_key='AIzaSyBhvhVpbSJ8H5kAap-wELrXLhlzyBN8q48')  
 model = genai.GenerativeModel('gemini-1.5-flash')
 
 def conectar_y_obtener_datos():
@@ -11,14 +11,14 @@ def conectar_y_obtener_datos():
         conexion = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="Manuel2004",
+            password="1234",
             database="proyecto1"
         )
         if conexion.is_connected():
             print("✅ Conexión exitosa a la base de datos")
 
             cursor = conexion.cursor()
-            cursor.execute("SELECT * FROM ingresos ORDER BY fecha, hora;")
+            cursor.execute("SELECT * FROM ingresos;")
             resultados = cursor.fetchall()
 
             columnas = [col[0] for col in cursor.description]  # Obtener nombres de columnas

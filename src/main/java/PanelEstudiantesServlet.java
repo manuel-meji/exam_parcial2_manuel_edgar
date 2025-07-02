@@ -107,8 +107,8 @@ public class PanelEstudiantesServlet extends HttpServlet {
         out.println("            <input type=\"date\" id=\"fechaNacimiento\" name=\"fechaNacimiento\" required>");
         out.println("          </div>");
         out.println("          <div class=\"footer-buttons\">");
-        out.println("            <button type=\"button\" class=\"clear-button\" onclick=\"limpiarYResetearForm()\">🧹 Limpiar</button>");
-        out.println("            <button type=\"submit\" class=\"add-button\" id=\"btnAgregar\">💾 Guardar</button>");
+        out.println("            <button type=\"button\" class=\"clear-button\" onclick=\"limpiarYResetearForm()\">Limpiar</button>");
+        out.println("            <button type=\"submit\" class=\"add-button\" id=\"btnAgregar\">Guardar</button>");
         out.println("          </div>");
         out.println("          <div class=\"footer-buttons\">");
         out.println("            <button type=\"button\" class=\"edit-button\" id=\"btnEditarForm\" onclick=\"document.getElementById('form-estudiante').submit();\" style=\"display:none;\">✏️ Guardar Cambios</button>");

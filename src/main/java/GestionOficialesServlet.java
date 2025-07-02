@@ -64,7 +64,7 @@ public class GestionOficialesServlet extends HttpServlet {
         out.println("   <div class=\"form-group\"><label for=\"telefono\">Número de teléfono</label><input type=\"text\" id=\"telefono\" name=\"telefono\" required></div>");
         out.println("   <div class=\"form-group\"><label for=\"userName\">Nombre de usuario</label><input type=\"text\" id=\"userName\" name=\"nombreUsuario\" required></div>");
         out.println("   <div class=\"form-group\"><label for=\"contrasena\">Contraseña</label><input type=\"password\" id=\"contrasena\" name=\"contrasena\" required></div>");
-        out.println("   <div class=\"footer-buttons\"><button type=\"button\" class=\"clear-button\" onclick=\"limpiarYResetearForm()\">Limpiar</button><button type=\"submit\" class=\"add-button\" id=\"btnAgregar\">Agregar</button></div>");
+        out.println("   <div class=\"footer-buttons\"><button type=\"button\" class=\"clear-button\" onclick=\"limpiarYResetearForm()\" >Limpiar</button><button type=\"submit\" class=\"add-button\" id=\"btnAgregar\">Agregar</button></div>");
         out.println("   <div class=\"footer-buttons\"><button type=\"button\" class=\"edit-button\" id=\"btnEditarForm\" onclick=\"document.getElementById('formOficial').submit();\">Guardar Cambios</button></div>");
         out.println("</form>");
 
