@@ -41,12 +41,17 @@
             if (rsMethod.next()) {
                 String contrasenaDB = rsMethod.getString("contraseña");
                 String nombreUsuarioBD = rsMethod.getString("nombreUsuario");
-                System.out.println("Usuario encontrado (Admin): " + nombreUsuarioBD);
+                System.out.println("Usuario encontrado (Admin): " + nombreUsuarioBD + ", contraseña DB: " + contrasenaDB);
                 if (contrasenaDB != null && contrasenaDB.equals(contrasena) && nombreUsuarioBD.equals(nombreUsuario)) {
-                    String nombreCompleto = rsMethod.getString("nombre1") + " " + rsMethod.getString("apellido1");
+                    String nombre1 = rsMethod.getString("nombre1");
+                    String apellido1 = rsMethod.getString("apellido1");
+                    String nombreCompleto = (nombre1 != null ? nombre1 : "") + " " + (apellido1 != null ? apellido1 : "");
+                    System.out.println("Nombre completo: " + nombreCompleto);
                     rsMethod.close();
                     pstmt.close();
-                    return nombreCompleto;
+                    return nombreCompleto.trim();
+                } else {
+                    System.out.println("Credenciales no válidas para usuario: " + nombreUsuario);
                 }
             } else {
                 System.out.println("No se encontró usuario con nombreUsuario: " + nombreUsuario + " y tipoUsuario: Administrador");
@@ -77,7 +82,7 @@
             System.out.println("Conexión a la base de datos establecida");
 
             nombreAdmin = loginAdmin(usuario, clave);
-            if (nombreAdmin != null) {
+            if (nombreAdmin != null && !nombreAdmin.isEmpty()) {
                 loginStatus = "admin_success";
                 session.setAttribute("tipoUsuario", "Administrador");
                 session.setAttribute("nombreAdmin", nombreAdmin);
@@ -154,24 +159,24 @@
                 <div class="form-group">
                     <label for="nombre">Nombre de usuario</label>
                     <div class="input-wrapper">
-                        <img src="images/icon-user.png" alt="Ícono de usuario" class="input-icon">
+                        <img src="https://img.icons8.com/?size=100&id=82790&format=png&color=000000" alt="Ícono de usuario" class="input-icon">
                         <input type="text" id="nombre" name="nombre" placeholder="NombreUsuario.12" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="clave">Contraseña</label>
                     <div class="input-wrapper">
-                        <img src="images/icon-password.png" alt="Ícono de contraseña" class="input-icon">
+                        <img src="https://img.icons8.com/?size=100&id=10480&format=png&color=000000" alt="Ícono de contraseña" class="input-icon">
                         <input type="password" id="clave" name="clave" placeholder="Usuario123" required>
                     </div>
                 </div>
                 <div class="form-actions">
                     <button type="submit" class="btn btn-primary">
-                        <img src="images/icon-login.png" alt="Ícono de iniciar sesión" class="btn-icon">
+                        <img src="https://img.icons8.com/?size=100&id=115996&format=png&color=000000" alt="Ícono de iniciar sesión" class="btn-icon">
                         Iniciar Sesión
                     </button>
                     <button type="button" class="btn btn-secondary" onclick="limpiarCampos()">
-                        <img src="images/icon-clear.png" alt="Ícono de limpiar" class="btn-icon">
+                        <img src="https://img.icons8.com/?size=100&id=104&format=png&color=000000" alt="Ícono de limpiar" class="btn-icon">
                         Limpiar
                     </button>
                 </div>
@@ -186,23 +191,23 @@
             <p>Selecciona una opción para continuar:</p>
             <div class="menu-grid">
                 <button class="menu-button" onclick="window.location.href='gestionOficiales.jsp'">
-                    <img src="images/icon-officers.png" alt="Ícono de oficiales" class="menu-icon">
+                    <img src="https://img.icons8.com/?size=100&id=82790&format=png&color=000000" alt="Ícono de oficiales" class="menu-icon">
                     Mantenimiento de Oficiales
                 </button>
                 <button class="menu-button" onclick="window.location.href='panelEstudiantes.jsp'">
-                    <img src="images/icon-students.png" alt="Ícono de estudiantes" class="menu-icon">
+                    <img src="https://img.icons8.com/?size=100&id=11283&format=png&color=000000" alt="Ícono de estudiantes" class="menu-icon">
                     Mantenimiento de Estudiantes
                 </button>
                 <button class="menu-button" onclick="window.location.href='panelAyuda.jsp'">
-                    <img src="images/icon-help.png" alt="Ícono de ayuda" class="menu-icon">
+                    <img src="https://img.icons8.com/?size=100&id=10810&format=png&color=000000" alt="Ícono de ayuda" class="menu-icon">
                     Ayuda
                 </button>
                 <button class="menu-button" onclick="window.location.href='panelDerechosAutor.jsp'">
-                    <img src="images/icon-copyright.png" alt="Ícono de derechos de autor" class="menu-icon">
+                    <img src="https://img.icons8.com/?size=100&id=9847&format=png&color=000000" alt="Ícono de derechos de autor" class="menu-icon">
                     Derechos de Autor
                 </button>
                 <button class="menu-button logout-button" onclick="window.location.href='login.jsp?logout=true'">
-                    <img src="images/icon-logout.png" alt="Ícono de cerrar sesión" class="menu-icon">
+                    <img src="https://img.icons8.com/?size=100&id=11584&format=png&color=000000" alt="Ícono de cerrar sesión" class="menu-icon">
                     Cerrar Sesión
                 </button>
             </div>
