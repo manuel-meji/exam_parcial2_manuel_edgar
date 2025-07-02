@@ -258,19 +258,19 @@
           <input type="hidden" id="nombreUsuarioOriginal" name="nombreUsuarioOriginal">
           <input type="hidden" id="action" name="action" value="agregar">
           <div class="form-group">
-            <label for="nombre1">Nombre1 *</label>
+            <label for="nombre1">Primer nombre *</label>
             <input type="text" id="nombre1" name="nombre1" required>
           </div>
           <div class="form-group">
-            <label for="nombre2">Nombre2 (opcional)</label>
+            <label for="nombre2">Segundo nombre (opcional)</label>
             <input type="text" id="nombre2" name="nombre2">
           </div>
           <div class="form-group">
-            <label for="apellido1">Apellido1 *</label>
+            <label for="apellido1">Primer apellido *</label>
             <input type="text" id="apellido1" name="apellido1" required>
           </div>
           <div class="form-group">
-            <label for="apellido2">Apellido2 *</label>
+            <label for="apellido2">Segundo apellido *</label>
             <input type="text" id="apellido2" name="apellido2" required>
           </div>
           <div class="form-group">
