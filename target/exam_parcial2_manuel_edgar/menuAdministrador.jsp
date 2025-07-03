@@ -24,7 +24,7 @@
 <body>
     <div class="admin-menu-container">
         <img src="images/logoCTPU.png" alt="Logo CTP UPALA" class="logo">
-        <h1>Gestión de Seguridad CTP UPALA</h1>
+        <h1>Gestión Administrativa</h1>
         <h2>Bienvenido, <%= nombreAdmin %></h2>
         <p>Selecciona una opción para continuar:</p>
         <div class="menu-grid">
