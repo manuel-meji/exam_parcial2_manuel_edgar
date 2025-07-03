@@ -5,6 +5,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -18,6 +19,8 @@ import java.nio.charset.StandardCharsets;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet("/ChatServlet")
 public class ChatServlet extends HttpServlet {
@@ -25,11 +28,19 @@ public class ChatServlet extends HttpServlet {
     private static final String GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent";
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
         String userMessage = request.getParameter("message");
         response.setContentType("text/plain;charset=UTF-8");
         PrintWriter out = response.getWriter();
 
         try {
+            // Obtener o inicializar el historial de chat
+            List<String> chatHistory = (List<String>) session.getAttribute("chatHistory");
+            if (chatHistory == null) {
+                chatHistory = new ArrayList<>();
+                session.setAttribute("chatHistory", chatHistory);
+            }
+
             // Obtener datos de la base de datos
             String contextoDatos = conectarYObtenerDatos();
             if (contextoDatos == null) {
@@ -37,16 +48,30 @@ public class ChatServlet extends HttpServlet {
                 return;
             }
 
-            // Preparar el contexto para Gemini
-            String contexto = "Aquí están los datos de ingresos registrados en la base de datos. "
-                    + "Hay tres tipos de ingreso: 'Funcionario', 'Externo' y 'VehiculoExterno'. "
-                    + "Cada registro contiene ID, cédula, fecha, hora, motivo de ingreso, nombre del guarda que aprobó, "
-                    + "y si es un ingreso de vehículo externo o funcionario, también la placa del vehículo. "
-                    + "Analiza esta información:\n\n" + contextoDatos + "\n\n"
-                    + "Responde a la siguiente pregunta del usuario: " + userMessage;
+            
+
+            // Preparar el contexto inicial con instrucción explícita
+            String contextoInicial = "Aquí están los datos de ingresos registrados en la base de datos. " +
+                "Hay tres tipos de ingreso: 'Funcionario', 'Externo' y 'VehiculoExterno'. " +
+                "Cada registro contiene ID, cédula, fecha, hora, motivo de ingreso, nombre del guarda que aprobó, " +
+                "y si es un ingreso de vehículo externo o funcionario, también la placa del vehículo. " +
+                "Analiza esta información:\n" +
+                "Datos:\n" + contextoDatos;
+
+            // Construir el mensaje completo con el historial
+            StringBuilder contexto = new StringBuilder();
+            if (chatHistory.isEmpty()) {
+                contexto.append(contextoInicial).append("\n\n");
+            }
+            for (String prevMessage : chatHistory) {
+                contexto.append(prevMessage).append("\n");
+            }
+            contexto.append("Usuario: ").append(userMessage);
 
             // Enviar solicitud a Gemini
-            String geminiResponse = sendToGemini(contexto);
+            String geminiResponse = sendToGemini(contexto.toString());
+            chatHistory.add("Usuario: " + userMessage);
+            chatHistory.add("Gemini: " + geminiResponse);
             out.print(geminiResponse);
         } catch (Exception e) {
             e.printStackTrace();
@@ -118,7 +143,15 @@ public class ChatServlet extends HttpServlet {
 
         int responseCode = conn.getResponseCode();
         if (responseCode != 200) {
-            return "Error al conectar con Gemini: Código " + responseCode;
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(conn.getErrorStream(), StandardCharsets.UTF_8))) {
+                StringBuilder errorResponse = new StringBuilder();
+                String errorLine;
+                while ((errorLine = br.readLine()) != null) {
+                    errorResponse.append(errorLine.trim());
+                }
+                System.out.println("❌ Error de Gemini API: " + errorResponse.toString());
+                return "Error al conectar con Gemini: Código " + responseCode;
+            }
         }
 
         try (BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), StandardCharsets.UTF_8))) {
@@ -128,14 +161,14 @@ public class ChatServlet extends HttpServlet {
                 response.append(responseLine.trim());
             }
 
-            // Extraer el texto de la respuesta (simplificado, asume estructura básica)
             String responseText = response.toString();
             int startIndex = responseText.indexOf("\"text\": \"") + 9;
-            int endIndex = responseText.lastIndexOf("\"");
+            int endIndex = responseText.indexOf("\"", startIndex);
             if (startIndex >= 9 && endIndex > startIndex) {
-                return responseText.substring(startIndex, endIndex).replace("\\n", "\n");
+                String cleanText = responseText.substring(startIndex, endIndex).replace("\\n", "\n").trim();
+                return cleanText.isEmpty() ? "No se pudo procesar la respuesta." : cleanText;
             } else {
-                return "Error al procesar la respuesta de Gemini.";
+                return "No se pudo extraer la respuesta.";
             }
         } finally {
             conn.disconnect();
@@ -149,4 +182,4 @@ public class ChatServlet extends HttpServlet {
                    .replace("\r", "\\r")
                    .replace("\t", "\\t");
     }
-} 
+}
