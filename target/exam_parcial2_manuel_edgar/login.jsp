@@ -87,6 +87,8 @@
                 session.setAttribute("tipoUsuario", "Administrador");
                 session.setAttribute("nombreAdmin", nombreAdmin);
                 System.out.println("Login admin exitoso: " + nombreAdmin);
+                response.sendRedirect(request.getContextPath() + "/menuAdministrador.jsp");
+                return;
             } else if (loginOficial(usuario, clave) != null) {
                 session.setAttribute("idOficialActual", idOficialActual);
                 session.setAttribute("tipoUsuario", "Guarda");
@@ -128,7 +130,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio de Sesión • Gestión de Seguridad CTP UPALA</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="estilosLogin.css">
+    <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
     <div class="login-container">
@@ -159,7 +161,7 @@
                 <div class="form-group">
                     <label for="nombre">Nombre de usuario</label>
                     <div class="input-wrapper">
-                        <img src="https://img.icons8.com/?size=100&id=82790&format=png&color=000000" alt="Ícono de usuario" class="input-icon">
+                        <img src="https://img.icons8.com/?size=100&id=23265&format=png&color=000000" alt="Ícono de usuario" class="input-icon">
                         <input type="text" id="nombre" name="nombre" placeholder="NombreUsuario.12" required>
                     </div>
                 </div>
@@ -172,47 +174,17 @@
                 </div>
                 <div class="form-actions">
                     <button type="submit" class="btn btn-primary">
-                        <img src="https://img.icons8.com/?size=100&id=115996&format=png&color=000000" alt="Ícono de iniciar sesión" class="btn-icon">
+                        <img src="https://img.icons8.com/?size=100&id=26211&format=png&color=FFFFFF" alt="Ícono de iniciar sesión" class="btn-icon">
                         Iniciar Sesión
                     </button>
                     <button type="button" class="btn btn-secondary" onclick="limpiarCampos()">
-                        <img src="https://img.icons8.com/?size=100&id=104&format=png&color=000000" alt="Ícono de limpiar" class="btn-icon">
+                        <img src="https://img.icons8.com/?size=100&id=8068&format=png&color=FFFFFF" alt="Ícono de limpiar" class="btn-icon">
                         Limpiar
                     </button>
                 </div>
             </form>
         </div>
     </div>
-
-    <!-- Menú de administrador -->
-    <% if ("admin_success".equals(loginStatus)) { %>
-        <div class="admin-menu">
-            <h2>Bienvenido, <%= nombreAdmin %></h2>
-            <p>Selecciona una opción para continuar:</p>
-            <div class="menu-grid">
-                <button class="menu-button" onclick="window.location.href='gestionOficiales.jsp'">
-                    <img src="https://img.icons8.com/?size=100&id=82790&format=png&color=000000" alt="Ícono de oficiales" class="menu-icon">
-                    Mantenimiento de Oficiales
-                </button>
-                <button class="menu-button" onclick="window.location.href='panelEstudiantes.jsp'">
-                    <img src="https://img.icons8.com/?size=100&id=11283&format=png&color=000000" alt="Ícono de estudiantes" class="menu-icon">
-                    Mantenimiento de Estudiantes
-                </button>
-                <button class="menu-button" onclick="window.location.href='panelAyuda.jsp'">
-                    <img src="https://img.icons8.com/?size=100&id=10810&format=png&color=000000" alt="Ícono de ayuda" class="menu-icon">
-                    Ayuda
-                </button>
-                <button class="menu-button" onclick="window.location.href='panelDerechosAutor.jsp'">
-                    <img src="https://img.icons8.com/?size=100&id=9847&format=png&color=000000" alt="Ícono de derechos de autor" class="menu-icon">
-                    Derechos de Autor
-                </button>
-                <button class="menu-button logout-button" onclick="window.location.href='login.jsp?logout=true'">
-                    <img src="https://img.icons8.com/?size=100&id=11584&format=png&color=000000" alt="Ícono de cerrar sesión" class="menu-icon">
-                    Cerrar Sesión
-                </button>
-            </div>
-        </div>
-    <% } %>
 
     <footer class="footer">
         © 2025 Seguridad y Tecnología • Todos los derechos reservados
