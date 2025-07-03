@@ -303,11 +303,17 @@ request.setCharacterEncoding("UTF-8"); // Aseguramos que la codificación sea UT
             <input type="date" id="fechaNacimiento" name="fechaNacimiento" required>
           </div>
           <div class="footer-buttons">
-            <button type="button" class="clear-button" onclick="limpiarYResetearForm()">Limpiar</button>
-            <button type="submit" class="add-button" id="btnAgregar">Guardar</button>
+            <button type="button" class="clear-button" onclick="limpiarYResetearForm()">
+            <img src="https://img.icons8.com/?size=100&id=8068&format=png&color=FFFFFF" alt="Limpiar Icono" style="width: 20px; height: 20px; vertical-align: middle;">
+            Limpiar</button>
+            <button type="submit" class="add-button" id="btnAgregar">
+            <img src="https://img.icons8.com/?size=100&id=UkLBG0sZoWV0&format=png&color=FFFFFF" alt="Agregar Icono" style="width: 20px; height: 20px; vertical-align: middle;">
+            Guardar</button>
           </div>
           <div class="footer-buttons">
-            <button type="button" class="edit-button" id="btnEditarForm" onclick="document.getElementById('form-estudiante').submit();" style="display:none;"> Guardar Cambios</button>
+            <button type="button" class="edit-button" id="btnEditarForm" onclick="document.getElementById('form-estudiante').submit();" style="display:none;">
+            <img src="https://img.icons8.com/?size=100&id=UkLBG0sZoWV0&format=png&color=FFFFFF" alt="Editar Icono" style="width: 20px; height: 20px; vertical-align: middle;">
+            Guardar Cambios</button>
           </div>
         </form>
       </section>
@@ -377,9 +383,13 @@ request.setCharacterEncoding("UTF-8"); // Aseguramos que la codificación sea UT
                                    '<%= jsNacionalidad %>',
                                    '<%= jsDireccion %>',
                                    '<%= jsFechaNacimiento %>',
-                                   '<%= jsCarnet %>')">Editar</a>
+                                   '<%= jsCarnet %>')">
+                                   <img src="https://img.icons8.com/?size=100&id=86374&format=png&color=FCC419" alt="Editar Icono" style="width: 20px; height: 20px; vertical-align: middle;">
+                                   </a>
                             <a href="panelEstudiantes.jsp?eliminar=true&carnet=<%= carnet %>" 
-                               onclick="return confirm('¿Confirmas que deseas eliminar al estudiante <%= carnet %>?');">Eliminar</a>
+                               onclick="return confirm('¿Confirmas que deseas eliminar al estudiante <%= carnet %>?');">
+                               <img src="https://img.icons8.com/?size=100&id=99950&format=png&color=FF2323" alt="Eliminar Icono" style="width: 20px; height: 20px; vertical-align: middle;">
+                               </a>
                         </td>
                     </tr>
                 <% } %>

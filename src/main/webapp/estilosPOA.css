@@ -86,19 +86,19 @@ body {
 
 /* Estilos generales para botones que se pueden reutilizar */
 .add-button {
-    background-color: #0056d2;
+    background-color: #34c759;
     color: white;
 }
 .add-button:hover {
-    background-color: #0041a8;
+    background-color: #2da14e;
 }
 
 .clear-button {
-    background-color: #6c757d;
+    background-color: #007aff;
     color: white;
 }
 .clear-button:hover {
-    background-color: #5a6268;
+    background-color: #005bb5;
 }
 
 .edit-button {
