@@ -42,8 +42,8 @@ body::before {
     margin: 2rem;
 }
 
-/* Contenedor para menú de administrador */
-.admin-menu-container {
+/* Contenedor para menú de administrador y chat */
+.admin-menu-container, .chat-container {
     position: relative;
     z-index: 1;
     max-width: 800px;
@@ -76,26 +76,26 @@ body::before {
     text-align: center;
 }
 
-.info-section .logo, .admin-menu-container .logo {
+.info-section .logo, .admin-menu-container .logo, .chat-container .logo {
     width: 150px;
     margin-bottom: 1.5rem;
 }
 
-.info-section h1, .admin-menu-container h1 {
+.info-section h1, .admin-menu-container h1, .chat-container h1 {
     font-size: 1.8rem;
     font-weight: 600;
     color: #fff;
     margin-bottom: 1rem;
 }
 
-.admin-menu-container h1 {
+.admin-menu-container h1, .chat-container h1 {
     color: #0056d2;
 }
 
-.info-section p {
+.info-section p, .admin-menu-container p, .chat-container p {
     font-size: 0.95rem;
     line-height: 1.5;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     max-width: 400px;
 }
 
@@ -121,7 +121,7 @@ body::before {
     align-items: center;
 }
 
-.form-section h2, .admin-menu-container h2 {
+.form-section h2, .admin-menu-container h2, .chat-container h2 {
     font-size: 1.6rem;
     color: #0056d2;
     margin-bottom: 1.5rem;
@@ -175,7 +175,7 @@ body::before {
 }
 
 /* Botones */
-.form-actions {
+.form-actions, .chat-actions {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0.75rem;
@@ -211,6 +211,17 @@ body::before {
 
 .btn-secondary:hover {
     background: #005bb5;
+    transform: translateY(-2px);
+}
+
+.btn-back {
+    background: #ff9500;
+    color: #fff;
+    margin-top: 1rem;
+}
+
+.btn-back:hover {
+    background: #cc7700;
     transform: translateY(-2px);
 }
 
@@ -289,6 +300,73 @@ body::before {
     margin-right: 0.5rem;
 }
 
+/* Chat */
+.chat-box {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    max-height: 400px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+.chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.message {
+    margin-bottom: 1rem;
+    padding: 0.8rem 1.2rem;
+    border-radius: 12px;
+    max-width: 80%;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.message.user {
+    background: #007aff;
+    color: #fff;
+    margin-left: auto;
+    border-bottom-right-radius: 2px;
+}
+
+.message.bot {
+    background: #f1f1f1;
+    color: #333;
+    margin-right: auto;
+    border-bottom-left-radius: 2px;
+}
+
+.message.bot.error {
+    background: #ff2d55;
+    color: #fff;
+}
+
+.chat-input {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.chat-input input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 0.95rem;
+}
+
+.chat-input input:focus {
+    outline: none;
+    border-color: #0056d2;
+    box-shadow: 0 0 0 2px rgba(0, 86, 210, 0.2);
+}
+
 /* Footer */
 .footer {
     position: relative;
@@ -307,50 +385,63 @@ body::before {
     }
 
     .info-section,
-    .form-section {
+    .form-section,
+    .chat-container {
         flex: none;
         width: 100%;
         padding: 1.5rem;
     }
 
     .info-section .logo,
-    .admin-menu-container .logo {
+    .admin-menu-container .logo,
+    .chat-container .logo {
         width: 120px;
     }
 
     .info-section h1,
-    .admin-menu-container h1 {
+    .admin-menu-container h1,
+    .chat-container h1 {
         font-size: 1.5rem;
     }
 
     .form-section h2,
-    .admin-menu-container h2 {
+    .admin-menu-container h2,
+    .chat-container h2 {
         font-size: 1.4rem;
     }
 
-    .form-actions {
+    .form-actions,
+    .chat-actions {
         grid-template-columns: 1fr;
+    }
+
+    .chat-box {
+        max-height: 300px;
     }
 }
 
 @media (max-width: 500px) {
     .info-section h1,
-    .admin-menu-container h1 {
+    .admin-menu-container h1,
+    .chat-container h1 {
         font-size: 1.3rem;
     }
 
     .info-section p,
     .info-section ul li,
-    .admin-menu-container p {
+    .admin-menu-container p,
+    .chat-container p {
         font-size: 0.9rem;
     }
 
     .form-section h2,
-    .admin-menu-container h2 {
+    .admin-menu-container h2,
+    .chat-container h2 {
         font-size: 1.2rem;
     }
 
-    .form-group input {
+    .form-group input,
+    .chat-input input {
         font-size: 0.9rem;
         padding: 0.7rem 0.7rem 0.7rem 2.2rem;
     }
@@ -366,5 +457,10 @@ body::before {
     .menu-button {
         font-size: 0.9rem;
         padding: 0.7rem;
+    }
+
+    .message {
+        max-width: 90%;
+        font-size: 0.9rem;
     }
 }
