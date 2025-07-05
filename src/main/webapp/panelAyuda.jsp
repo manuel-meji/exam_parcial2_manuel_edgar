@@ -52,16 +52,8 @@
             <div class="help-card video-card">
                 <h3>Video Explicativo</h3>
                 <p>Aprende cómo usar el sistema con este video introductorio:</p>
-                <div class="video-container">
-                    <iframe 
-                        src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
-                        title="Video Explicativo del Sistema" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                    </iframe>
-                </div>
-                <p><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">Ver en YouTube</a></p>
+              
+                <p><a href="https://drive.google.com/drive/folders/1vgcpYQRCRowrLu-mGrkb4zx_aA3UrlHb?usp=drive_link" target="_blank">Ver en Drive</a></p>
             </div>
 
             <!-- Contacto para Soporte -->
